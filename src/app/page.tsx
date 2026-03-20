@@ -117,10 +117,10 @@ const endorsements = [
     detail: "Full technical audit, March 2026",
   },
   {
-    who: "ChatGPT Codex",
-    score: "",
-    quote: "The core project looks real and increasingly disciplined. The full suite is strong. The core value prop is stronger than anything else in this space.",
-    detail: "Independent audit on Windows, March 2026",
+    who: "ChatGPT Codex 5.4",
+    score: "9/10",
+    quote: "I would absolutely choose to use Aleph over raw-source-first exploration on a serious codebase. It feels like a real productivity multiplier, not a gimmick. The biggest value is that Aleph gives an agent a better unit of thought than raw files: symbols, salience, callers, stability, coverage, prior inferences.",
+    detail: "Independent audit + self-assessment, March 2026. Rated: Small repo 5/10, Medium 8/10, Large 9/10",
   },
 ];
 
