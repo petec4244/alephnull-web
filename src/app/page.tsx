@@ -368,10 +368,10 @@ function SpeedComparison() {
     <section style={{ background: "var(--bg-alt)" }} className="!max-w-none">
       <div className="max-w-3xl mx-auto">
         <h2 className="text-3xl md:text-5xl font-black text-center mb-4 tracking-tight">
-          Fewer tokens reading.<br />More tokens thinking.
+          5x faster. Not a benchmark.<br />A Tuesday afternoon.
         </h2>
         <p className="text-center mb-12 text-lg" style={{ color: "var(--fg-muted)" }}>
-          A real example from building Aleph itself.
+          Real example: understanding a function&apos;s callers and dispatch pattern while building Aleph.
         </p>
 
         <div className="grid md:grid-cols-2 gap-6 mb-10">
@@ -433,11 +433,14 @@ Callees (3):
         </div>
 
         <div className="text-center">
-          <p className="text-lg font-semibold mb-2">
-            Same answer. <span className="font-black">25x fewer tokens. 5x fewer round-trips.</span>
+          <p className="text-xl md:text-2xl font-black mb-3">
+            5x faster. 25x less context burned.
           </p>
-          <p className="text-sm" style={{ color: "var(--fg-muted)" }}>
-            Every token your AI spends reading is a token it can&apos;t use for reasoning. Aleph gives it back.
+          <p className="text-base mb-2" style={{ color: "var(--fg-muted)" }}>
+            Every round-trip is latency. Every token spent reading is a token your AI can&apos;t use for reasoning.
+          </p>
+          <p className="text-base font-semibold">
+            Aleph eliminates both. Your agent thinks faster because it wastes less.
           </p>
         </div>
       </div>
