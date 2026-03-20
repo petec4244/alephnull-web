@@ -414,6 +414,9 @@ function LanguageVote() {
             Get Updates
           </button>
         </form>
+        <p className="text-center mt-3 text-xs" style={{ color: "var(--fg-muted)" }}>
+          Release notifications only — new languages, major features. No marketing. No data sales. Ever.
+        </p>
       ) : (
         <p className="text-center text-sm font-semibold" style={{ color: "var(--fg)" }}>
           You&apos;re on the list. We&apos;ll notify you when the next language ships.
