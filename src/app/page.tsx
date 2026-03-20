@@ -42,6 +42,7 @@ function Nav() {
         <div className="hidden md:flex gap-8 text-sm" style={{ color: "var(--fg-muted)" }}>
           <a href="#endorsements" className="hover:opacity-100 opacity-70 transition">Reviews</a>
           <a href="#benchmarks" className="hover:opacity-100 opacity-70 transition">Benchmarks</a>
+          <a href="#how-it-works" className="hover:opacity-100 opacity-70 transition">How It Works</a>
           <a href="#features" className="hover:opacity-100 opacity-70 transition">Features</a>
           <a href="#pricing" className="hover:opacity-100 opacity-70 transition">Pricing</a>
           <a href="#install" className="hover:opacity-100 opacity-70 transition">Install</a>
@@ -222,7 +223,7 @@ function HowItWorks() {
 
   return (
     <section>
-      <h2 className="text-3xl md:text-5xl font-black text-center mb-16 tracking-tight">
+      <h2 id="how-it-works" className="text-3xl md:text-5xl font-black text-center mb-16 tracking-tight scroll-mt-20">
         Three commands. Zero config.
       </h2>
       <div className="grid md:grid-cols-3 gap-8 mb-16">
@@ -358,6 +359,88 @@ TASK BRIEF: optimize the distance calculation
           </div>
         </div>
       </details>
+    </section>
+  );
+}
+
+function SpeedComparison() {
+  return (
+    <section style={{ background: "var(--bg-alt)" }} className="!max-w-none">
+      <div className="max-w-3xl mx-auto">
+        <h2 className="text-3xl md:text-5xl font-black text-center mb-4 tracking-tight">
+          Fewer tokens reading.<br />More tokens thinking.
+        </h2>
+        <p className="text-center mb-12 text-lg" style={{ color: "var(--fg-muted)" }}>
+          A real example from building Aleph itself.
+        </p>
+
+        <div className="grid md:grid-cols-2 gap-6 mb-10">
+          {/* Without Aleph */}
+          <div
+            className="rounded-xl border p-6"
+            style={{ borderColor: "var(--border)", background: "var(--bg)" }}
+          >
+            <h3 className="font-bold mb-3 text-lg">Without Aleph</h3>
+            <p className="text-sm mb-4" style={{ color: "var(--fg-muted)" }}>
+              Understanding who calls <code className="px-1 rounded text-xs" style={{ background: "var(--code-bg)" }}>_extract_name</code> and what it dispatches to:
+            </p>
+            <ol className="text-sm space-y-2 mb-4" style={{ color: "var(--fg-muted)" }}>
+              <li>1. Search for the function name</li>
+              <li>2. Read the file to find it</li>
+              <li>3. Read more to understand the dispatch</li>
+              <li>4. Search for callers across files</li>
+              <li>5. Read those files too</li>
+            </ol>
+            <div className="flex justify-between items-end pt-3 border-t" style={{ borderColor: "var(--border)" }}>
+              <div>
+                <span className="text-2xl font-black">5+</span>
+                <span className="text-sm ml-1" style={{ color: "var(--fg-muted)" }}>tool calls</span>
+              </div>
+              <div>
+                <span className="text-2xl font-black">~5,000</span>
+                <span className="text-sm ml-1" style={{ color: "var(--fg-muted)" }}>tokens consumed</span>
+              </div>
+            </div>
+          </div>
+
+          {/* With Aleph */}
+          <div
+            className="rounded-xl border p-6 ring-2"
+            style={{ borderColor: "var(--fg)", background: "var(--bg)" }}
+          >
+            <h3 className="font-bold mb-3 text-lg">With Aleph</h3>
+            <p className="text-sm mb-4" style={{ color: "var(--fg-muted)" }}>
+              Same question, one call:
+            </p>
+            <pre className="!p-3 text-xs mb-4">{`> ALEPH:CONTEXT `}<strong>f_a3c9</strong>{`
+
+Callers (1): _extract_symbol
+Callees (3):
+  -> _extract_name_rust
+  -> _extract_name_cpp
+  -> _extract_name_python`}</pre>
+            <div className="flex justify-between items-end pt-3 border-t" style={{ borderColor: "var(--border)" }}>
+              <div>
+                <span className="text-2xl font-black">1</span>
+                <span className="text-sm ml-1" style={{ color: "var(--fg-muted)" }}>tool call</span>
+              </div>
+              <div>
+                <span className="text-2xl font-black">~200</span>
+                <span className="text-sm ml-1" style={{ color: "var(--fg-muted)" }}>tokens consumed</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="text-center">
+          <p className="text-lg font-semibold mb-2">
+            Same answer. <span className="font-black">25x fewer tokens. 5x fewer round-trips.</span>
+          </p>
+          <p className="text-sm" style={{ color: "var(--fg-muted)" }}>
+            Every token your AI spends reading is a token it can&apos;t use for reasoning. Aleph gives it back.
+          </p>
+        </div>
+      </div>
     </section>
   );
 }
@@ -711,6 +794,7 @@ export default function Home() {
         <Endorsements />
         <Benchmarks />
         <HowItWorks />
+        <SpeedComparison />
         <Features />
         <LanguageVote />
         <Pricing />
