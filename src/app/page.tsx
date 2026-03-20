@@ -1,65 +1,440 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useState } from "react";
+
+function ThemeToggle() {
+  const [dark, setDark] = useState(false);
+
+  useEffect(() => {
+    setDark(document.documentElement.getAttribute("data-theme") === "dark");
+  }, []);
+
+  const toggle = () => {
+    const next = !dark;
+    setDark(next);
+    document.documentElement.setAttribute("data-theme", next ? "dark" : "light");
+    localStorage.setItem("theme", next ? "dark" : "light");
+  };
+
+  return (
+    <button
+      onClick={toggle}
+      className="fixed top-6 right-6 z-50 w-10 h-10 rounded-full flex items-center justify-center border hover:scale-110 transition-transform"
+      style={{ borderColor: "var(--border)", background: "var(--bg)" }}
+      aria-label="Toggle dark mode"
+    >
+      {dark ? "☀" : "●"}
+    </button>
+  );
+}
+
+function Nav() {
+  return (
+    <nav
+      className="fixed top-0 left-0 right-0 z-40 backdrop-blur-md border-b"
+      style={{ borderColor: "var(--border)", background: "color-mix(in srgb, var(--bg) 85%, transparent)" }}
+    >
+      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="#" className="text-lg font-bold tracking-tight" style={{ color: "var(--fg)" }}>
+          ALEPH NULL
+        </a>
+        <div className="hidden md:flex gap-8 text-sm" style={{ color: "var(--fg-muted)" }}>
+          <a href="#endorsements" className="hover:opacity-100 opacity-70 transition">Reviews</a>
+          <a href="#benchmarks" className="hover:opacity-100 opacity-70 transition">Benchmarks</a>
+          <a href="#features" className="hover:opacity-100 opacity-70 transition">Features</a>
+          <a href="#pricing" className="hover:opacity-100 opacity-70 transition">Pricing</a>
+          <a href="#install" className="hover:opacity-100 opacity-70 transition">Install</a>
+        </div>
+      </div>
+    </nav>
+  );
+}
+
+function Hero() {
+  return (
+    <section className="min-h-screen flex flex-col items-center justify-center text-center pt-20">
+      <Image
+        src="/logo.jpg"
+        alt="Aleph Null"
+        width={160}
+        height={160}
+        className="mb-8 rounded-2xl"
+        priority
+      />
+      <h1
+        className="text-5xl md:text-7xl font-black tracking-tight mb-6 leading-tight"
+        style={{ color: "var(--fg)" }}
+      >
+        The compiler your AI<br />has been waiting for.
+      </h1>
+      <p className="text-xl md:text-2xl max-w-2xl mb-10 leading-relaxed" style={{ color: "var(--fg-muted)" }}>
+        95%+ token reduction on real codebases. 31 semantic tools via MCP.
+        Your LLM navigates code instead of drowning in it.
+      </p>
+      <div className="flex flex-col sm:flex-row gap-4 mb-12">
+        <a
+          href="#install"
+          className="px-8 py-4 rounded-lg text-lg font-semibold transition-transform hover:scale-105"
+          style={{ background: "var(--fg)", color: "var(--bg)" }}
+        >
+          Get Started Free
+        </a>
+        <a
+          href="https://github.com/petec4244/Aleph"
+          target="_blank"
+          className="px-8 py-4 rounded-lg text-lg font-semibold border transition-transform hover:scale-105"
+          style={{ borderColor: "var(--border)", color: "var(--fg)" }}
+        >
+          View on GitHub
+        </a>
+      </div>
+      <p className="text-sm" style={{ color: "var(--fg-muted)" }}>
+        Python &middot; Rust &middot; C++ &middot; TypeScript/JavaScript &middot; Go
+      </p>
+    </section>
+  );
+}
+
+const endorsements = [
+  {
+    who: "Grok",
+    score: "9.5/10",
+    quote: "Yes \u2014 Grok would use Aleph without hesitation. It finally gives agents real persistent memory, semantic stability, and reliable patching instead of constant context loss.",
+    detail: "Full 9-part codebase review, March 2026",
+  },
+  {
+    who: "Claude",
+    score: "",
+    quote: "Aleph changes my relationship with large codebases from \u2018overwhelmed, guessing which files matter\u2019 to \u2018navigating a semantic graph with salience-weighted priorities.\u2019 That\u2019s not incremental \u2014 it\u2019s a different way of working.",
+    detail: "Built Aleph, primary consumer, March 2026",
+  },
+  {
+    who: "Gemini",
+    score: "10/10",
+    quote: "This is a structurally brilliant project. Aleph is one of the most mechanically sound agentic-coding tools currently in development. This isn\u2019t just compression \u2014 it\u2019s a compiler tailored for artificial intelligence.",
+    detail: "Full technical audit, March 2026",
+  },
+  {
+    who: "ChatGPT Codex",
+    score: "",
+    quote: "The core project looks real and increasingly disciplined. The full suite is strong. The core value prop is stronger than anything else in this space.",
+    detail: "Independent audit on Windows, March 2026",
+  },
+];
+
+function Endorsements() {
+  return (
+    <section id="endorsements">
+      <h2 className="text-3xl md:text-5xl font-black text-center mb-4 tracking-tight">
+        What leading AIs say
+      </h2>
+      <p className="text-center mb-16 text-lg" style={{ color: "var(--fg-muted)" }}>
+        Four independent AI systems reviewed the full codebase. All endorsed it.
+      </p>
+      <div className="grid md:grid-cols-2 gap-8">
+        {endorsements.map((e) => (
+          <div
+            key={e.who}
+            className="p-8 rounded-xl border"
+            style={{ background: "var(--quote-bg)", borderColor: "var(--border)" }}
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <span className="text-lg font-bold">{e.who}</span>
+              {e.score && (
+                <span
+                  className="text-sm px-2 py-0.5 rounded-full font-mono"
+                  style={{ background: "var(--fg)", color: "var(--bg)" }}
+                >
+                  {e.score}
+                </span>
+              )}
+            </div>
+            <blockquote className="text-lg leading-relaxed mb-4 italic" style={{ color: "var(--fg)" }}>
+              &ldquo;{e.quote}&rdquo;
+            </blockquote>
+            <p className="text-sm" style={{ color: "var(--fg-muted)" }}>
+              &mdash; {e.detail}
+            </p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+const benchmarks = [
+  { name: "HiWave", lang: "Rust", files: "7,667", symbols: "200,413", tokens: "38.9M \u2192 1.9M", reduction: "95.2%" },
+  { name: "OpenClaw", lang: "TypeScript", files: "7,149", symbols: "84,668", tokens: "13.3M \u2192 504k", reduction: "96.2%" },
+  { name: "GoClaw", lang: "Go", files: "73", symbols: "768", tokens: "111k \u2192 6.9k", reduction: "93.8%" },
+  { name: "Polymarket", lang: "Python", files: "16", symbols: "213", tokens: "19.5k \u2192 1.9k", reduction: "90.4%" },
+  { name: "Aleph", lang: "Python", files: "145", symbols: "2,124", tokens: "176k \u2192 22k", reduction: "87.4%" },
+];
+
+function Benchmarks() {
+  return (
+    <section id="benchmarks" style={{ background: "var(--bg-alt)" }} className="!max-w-none">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="text-3xl md:text-5xl font-black text-center mb-4 tracking-tight">
+          Real-world results
+        </h2>
+        <p className="text-center mb-12 text-lg" style={{ color: "var(--fg-muted)" }}>
+          Validated on production codebases. Not toy benchmarks.
+        </p>
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr style={{ borderBottom: "2px solid var(--border)" }}>
+                <th className="py-3 px-4 font-semibold">Codebase</th>
+                <th className="py-3 px-4 font-semibold">Language</th>
+                <th className="py-3 px-4 font-semibold text-right">Files</th>
+                <th className="py-3 px-4 font-semibold text-right">Symbols</th>
+                <th className="py-3 px-4 font-semibold text-right">Tokens</th>
+                <th className="py-3 px-4 font-semibold text-right">Reduction</th>
+              </tr>
+            </thead>
+            <tbody>
+              {benchmarks.map((b) => (
+                <tr key={b.name} style={{ borderBottom: "1px solid var(--border)" }}>
+                  <td className="py-3 px-4 font-semibold">{b.name}</td>
+                  <td className="py-3 px-4" style={{ color: "var(--fg-muted)" }}>{b.lang}</td>
+                  <td className="py-3 px-4 text-right font-mono">{b.files}</td>
+                  <td className="py-3 px-4 text-right font-mono">{b.symbols}</td>
+                  <td className="py-3 px-4 text-right font-mono text-sm">{b.tokens}</td>
+                  <td className="py-3 px-4 text-right font-black text-xl">{b.reduction}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function HowItWorks() {
+  const steps = [
+    { num: "1", title: "Build", desc: "aleph build .", detail: "Compiles your codebase into navigable semantic artifacts." },
+    { num: "2", title: "Connect", desc: "aleph setup .", detail: "Generates MCP configs for Cursor, VS Code, Windsurf, Claude Code." },
+    { num: "3", title: "Work", desc: "Your AI is 10x smarter", detail: "31 tools for navigation, impact analysis, and persistent memory." },
+  ];
+
+  return (
+    <section>
+      <h2 className="text-3xl md:text-5xl font-black text-center mb-16 tracking-tight">
+        Three commands. Zero config.
+      </h2>
+      <div className="grid md:grid-cols-3 gap-8">
+        {steps.map((s) => (
+          <div key={s.num} className="text-center">
+            <div
+              className="w-16 h-16 rounded-full flex items-center justify-center text-2xl font-black mx-auto mb-4"
+              style={{ background: "var(--fg)", color: "var(--bg)" }}
+            >
+              {s.num}
+            </div>
+            <h3 className="text-2xl font-bold mb-2">{s.title}</h3>
+            <code
+              className="inline-block px-3 py-1 rounded text-sm mb-3"
+              style={{ background: "var(--code-bg)" }}
+            >
+              {s.desc}
+            </code>
+            <p style={{ color: "var(--fg-muted)" }}>{s.detail}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function Features() {
+  const features = [
+    { title: "31 MCP Tools", desc: "Navigate, search, resolve, expand, impact analysis, task briefing \u2014 all via Model Context Protocol." },
+    { title: "Impact Analysis", desc: "One call shows blast radius, untested callers, risk assessment, and suggested test targets before you modify anything." },
+    { title: "Task Briefing", desc: "Describe your task in natural language. Get a curated context package with relevant symbols, call graph, and next steps." },
+    { title: "Epistemic Memory", desc: "Conclusions persist across sessions. Confidence decays on stale inferences. Multi-agent tracking via agent ID." },
+    { title: "6 Languages", desc: "Python, Rust, C++, TypeScript/JavaScript, and Go. Tree-sitter parsing with language-specific extractors." },
+    { title: "Auto-Rebuild", desc: "The MCP server watches for file changes and rebuilds incrementally. Edit a file, artifacts update in 3 seconds." },
+    { title: "Cross-Project", desc: "Workspace mode searches across multiple repos. Detects shared symbols and cross-project connections." },
+    { title: "Offline Licenses", desc: "Ed25519 signed license files. No phone-home. Works air-gapped after download." },
+  ];
+
+  return (
+    <section id="features">
+      <h2 className="text-3xl md:text-5xl font-black text-center mb-16 tracking-tight">
+        Everything your agent needs
+      </h2>
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {features.map((f) => (
+          <div
+            key={f.title}
+            className="p-6 rounded-xl border"
+            style={{ borderColor: "var(--border)" }}
+          >
+            <h3 className="text-lg font-bold mb-2">{f.title}</h3>
+            <p className="text-sm leading-relaxed" style={{ color: "var(--fg-muted)" }}>{f.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function Pricing() {
+  const tiers = [
+    {
+      name: "Free",
+      price: "$0",
+      period: "forever",
+      desc: "Solo developers & open source",
+      features: ["All 31 MCP tools", "All 6 languages", "Local builds & serve", "Auto-rebuild", "Session memory"],
+      cta: "Get Started",
+      href: "#install",
+      highlight: false,
+    },
+    {
+      name: "Pro",
+      price: "$19",
+      period: "/user/month",
+      desc: "Teams & indie studios",
+      features: ["Everything in Free", "Multi-agent epistemic", "Cross-project workspace", "Token savings dashboard", "Priority support"],
+      cta: "Coming Soon",
+      href: "#",
+      highlight: true,
+      alt: "or $99/repo/month",
+    },
+    {
+      name: "Enterprise",
+      price: "Custom",
+      period: "",
+      desc: "Companies & large monorepos",
+      features: ["Everything in Pro", "On-prem deployment", "SSO & audit logs", "Custom salience tuning", "Dedicated support"],
+      cta: "Contact Us",
+      href: "mailto:licensing@alephnull.ai",
+      highlight: false,
+    },
+  ];
+
+  return (
+    <section id="pricing" style={{ background: "var(--bg-alt)" }} className="!max-w-none">
+      <div className="max-w-5xl mx-auto">
+        <h2 className="text-3xl md:text-5xl font-black text-center mb-4 tracking-tight">
+          Simple pricing
+        </h2>
+        <p className="text-center mb-4 text-lg" style={{ color: "var(--fg-muted)" }}>
+          Free for solo devs. Licensed for teams.
+        </p>
+        <p className="text-center mb-12 text-sm" style={{ color: "var(--fg-muted)" }}>
+          Real ROI: one developer saves $800&ndash;1,200/month in tokens at 95% compression. Pro pays for itself in 2 days.
+        </p>
+        <div className="grid md:grid-cols-3 gap-6">
+          {tiers.map((t) => (
+            <div
+              key={t.name}
+              className={`p-8 rounded-xl border flex flex-col ${t.highlight ? "ring-2" : ""}`}
+              style={{
+                borderColor: t.highlight ? "var(--fg)" : "var(--border)",
+                background: "var(--bg)",
+                ...(t.highlight ? { ringColor: "var(--fg)" } : {}),
+              }}
+            >
+              <h3 className="text-xl font-bold mb-1">{t.name}</h3>
+              <div className="mb-1">
+                <span className="text-4xl font-black">{t.price}</span>
+                <span className="text-sm" style={{ color: "var(--fg-muted)" }}>{t.period}</span>
+              </div>
+              {t.alt && <p className="text-xs mb-3" style={{ color: "var(--fg-muted)" }}>{t.alt}</p>}
+              <p className="text-sm mb-6" style={{ color: "var(--fg-muted)" }}>{t.desc}</p>
+              <ul className="flex-1 mb-6 space-y-2">
+                {t.features.map((f) => (
+                  <li key={f} className="text-sm flex items-start gap-2">
+                    <span className="mt-0.5">+</span> {f}
+                  </li>
+                ))}
+              </ul>
+              <a
+                href={t.href}
+                className="block text-center py-3 rounded-lg font-semibold transition-transform hover:scale-105"
+                style={{
+                  background: t.highlight ? "var(--fg)" : "transparent",
+                  color: t.highlight ? "var(--bg)" : "var(--fg)",
+                  border: t.highlight ? "none" : "1px solid var(--border)",
+                }}
+              >
+                {t.cta}
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Install() {
+  return (
+    <section id="install">
+      <h2 className="text-3xl md:text-5xl font-black text-center mb-12 tracking-tight">
+        Get started in 30 seconds
+      </h2>
+      <div className="max-w-2xl mx-auto">
+        <pre>
+          <code>{`# Install
+pip install aleph-compiler
+
+# Build your project
+cd your-project
+aleph build .
+
+# Connect your editor
+aleph setup .
+
+# Done. Your AI now has 31 semantic tools.`}</code>
+        </pre>
+        <p className="text-center mt-8 text-sm" style={{ color: "var(--fg-muted)" }}>
+          Or run without installing: <code className="px-2 py-0.5 rounded" style={{ background: "var(--code-bg)" }}>uvx aleph-compiler build .</code>
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer
+      className="border-t py-12 px-6 text-center text-sm"
+      style={{ borderColor: "var(--border)", color: "var(--fg-muted)" }}
+    >
+      <p className="mb-2 font-semibold" style={{ color: "var(--fg)" }}>
+        Aleph Null LLC
+      </p>
+      <p className="mb-4">Patent Pending</p>
+      <div className="flex justify-center gap-6 mb-4">
+        <a href="https://github.com/petec4244/Aleph" target="_blank" className="hover:underline">GitHub</a>
+        <a href="mailto:licensing@alephnull.ai" className="hover:underline">Licensing</a>
+        <a href="mailto:support@alephnull.ai" className="hover:underline">Support</a>
+      </div>
+      <p>&copy; 2026 Aleph Null LLC. All rights reserved.</p>
+    </footer>
+  );
+}
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <>
+      <ThemeToggle />
+      <Nav />
+      <main>
+        <Hero />
+        <Endorsements />
+        <Benchmarks />
+        <HowItWorks />
+        <Features />
+        <Pricing />
+        <Install />
       </main>
-    </div>
+      <Footer />
+    </>
   );
 }
