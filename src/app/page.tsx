@@ -392,31 +392,33 @@ function LanguageVote() {
 
       {/* Email signup */}
       {!subscribed ? (
-        <form onSubmit={handleSubscribe} className="max-w-md mx-auto flex gap-2">
-          <input
-            type="email"
-            placeholder="your@email.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            className="flex-1 px-4 py-3 rounded-lg border text-sm outline-none"
-            style={{
-              borderColor: "var(--border)",
-              background: "var(--bg)",
-              color: "var(--fg)",
-            }}
-          />
-          <button
-            type="submit"
-            className="px-6 py-3 rounded-lg text-sm font-semibold transition-transform hover:scale-105 whitespace-nowrap"
-            style={{ background: "var(--fg)", color: "var(--bg)" }}
-          >
-            Get Updates
-          </button>
-        </form>
-        <p className="text-center mt-3 text-xs" style={{ color: "var(--fg-muted)" }}>
-          Release notifications only — new languages, major features. No marketing. No data sales. Ever.
-        </p>
+        <>
+          <form onSubmit={handleSubscribe} className="max-w-md mx-auto flex gap-2">
+            <input
+              type="email"
+              placeholder="your@email.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="flex-1 px-4 py-3 rounded-lg border text-sm outline-none"
+              style={{
+                borderColor: "var(--border)",
+                background: "var(--bg)",
+                color: "var(--fg)",
+              }}
+            />
+            <button
+              type="submit"
+              className="px-6 py-3 rounded-lg text-sm font-semibold transition-transform hover:scale-105 whitespace-nowrap"
+              style={{ background: "var(--fg)", color: "var(--bg)" }}
+            >
+              Get Updates
+            </button>
+          </form>
+          <p className="text-center mt-3 text-xs" style={{ color: "var(--fg-muted)" }}>
+            Release notifications only — new languages, major features. No marketing. No data sales. Ever.
+          </p>
+        </>
       ) : (
         <p className="text-center text-sm font-semibold" style={{ color: "var(--fg)" }}>
           You&apos;re on the list. We&apos;ll notify you when the next language ships.
