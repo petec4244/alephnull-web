@@ -164,11 +164,10 @@ function Endorsements() {
 }
 
 const benchmarks = [
-  { name: "HiWave", lang: "Rust", files: "7,667", symbols: "200,413", tokens: "38.9M \u2192 1.9M", reduction: "95.2%" },
-  { name: "OpenClaw", lang: "TypeScript", files: "7,149", symbols: "84,668", tokens: "13.3M \u2192 504k", reduction: "96.2%" },
-  { name: "GoClaw", lang: "Go", files: "73", symbols: "768", tokens: "111k \u2192 6.9k", reduction: "93.8%" },
-  { name: "Polymarket", lang: "Python", files: "16", symbols: "213", tokens: "19.5k \u2192 1.9k", reduction: "90.4%" },
-  { name: "Aleph", lang: "Python", files: "145", symbols: "2,124", tokens: "176k \u2192 22k", reduction: "87.4%" },
+  { name: "HiWave Browser", lang: "Rust", files: "7,667", symbols: "200,413", tokens: "38.9M \u2192 1.9M", reduction: "95.2%", url: "https://hiwave.xyz" },
+  { name: "OpenClaw", lang: "TypeScript", files: "7,149", symbols: "84,668", tokens: "13.3M \u2192 504k", reduction: "96.2%", url: "https://github.com/nicepkg/openclaw" },
+  { name: "GoClaw", lang: "Go", files: "73", symbols: "768", tokens: "111k \u2192 6.9k", reduction: "93.8%", url: "https://github.com/sausheong/goclaw" },
+  { name: "Aleph", lang: "Python", files: "145", symbols: "2,124", tokens: "176k \u2192 22k", reduction: "87.4%", url: "https://github.com/petec4244/Aleph" },
 ];
 
 function Benchmarks() {
@@ -196,7 +195,9 @@ function Benchmarks() {
             <tbody>
               {benchmarks.map((b) => (
                 <tr key={b.name} style={{ borderBottom: "1px solid var(--border)" }}>
-                  <td className="py-3 px-4 font-semibold">{b.name}</td>
+                  <td className="py-3 px-4 font-semibold">
+                    <a href={b.url} target="_blank" className="underline decoration-1 underline-offset-2 hover:opacity-70 transition">{b.name}</a>
+                  </td>
                   <td className="py-3 px-4" style={{ color: "var(--fg-muted)" }}>{b.lang}</td>
                   <td className="py-3 px-4 text-right font-mono">{b.files}</td>
                   <td className="py-3 px-4 text-right font-mono">{b.symbols}</td>
