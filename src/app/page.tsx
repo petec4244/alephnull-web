@@ -225,7 +225,7 @@ function HowItWorks() {
       <h2 className="text-3xl md:text-5xl font-black text-center mb-16 tracking-tight">
         Three commands. Zero config.
       </h2>
-      <div className="grid md:grid-cols-3 gap-8">
+      <div className="grid md:grid-cols-3 gap-8 mb-16">
         {steps.map((s) => (
           <div key={s.num} className="text-center">
             <div
@@ -245,6 +245,119 @@ function HowItWorks() {
           </div>
         ))}
       </div>
+
+      {/* Expandable deep dive */}
+      <details className="max-w-2xl mx-auto">
+        <summary
+          className="cursor-pointer text-center text-lg md:text-xl font-bold py-4 select-none hover:opacity-70 transition"
+          style={{ color: "var(--fg)" }}
+        >
+          See how it works: compression, navigation, impact, memory &darr;
+        </summary>
+
+        <div className="mt-6 space-y-8">
+          {/* 1. Compression */}
+          <div
+            className="rounded-xl border p-6"
+            style={{ borderColor: "var(--border)", background: "var(--quote-bg)" }}
+          >
+            <h4 className="font-bold mb-3">Symbol Compression</h4>
+            <pre className="!p-4 text-xs md:text-sm"><span style={{ color: "var(--fg-muted)" }}>{`// Before: your source code (verbose, token-heavy)`}</span>{`
+function calculateDistanceBetweenTwoPoints(x1, y1, x2, y2) {
+  const dx = x2 - x1;
+  const dy = y2 - y1;
+  return Math.sqrt(dx * dx + dy * dy);
+}                                         ~45 tokens
+`}<span style={{ color: "var(--fg-muted)" }}>{`
+// After: Aleph-compressed (same meaning, fraction of tokens)`}</span>{`
+`}<strong>f_a3c9</strong>{`(v_x1, v_y1, v_x2, v_y2) -> number
+  sig: (x1: number, y1: number, x2: number, y2: number)
+  calls: `}f_b2e1{` (Math.sqrt)
+  called_by: `}f_c4d3{`, `}f_e5f6{`                ~12 tokens`}</pre>
+            <p className="text-sm mt-3" style={{ color: "var(--fg-muted)" }}>
+              Bodies are omitted by default. Signatures, call graphs, and relationships are preserved. Full body available on demand via <code style={{ background: "var(--code-bg)" }} className="px-1 rounded text-xs">ALEPH:EXPAND</code>.
+            </p>
+          </div>
+
+          {/* 2. Navigation */}
+          <div
+            className="rounded-xl border p-6"
+            style={{ borderColor: "var(--border)", background: "var(--quote-bg)" }}
+          >
+            <h4 className="font-bold mb-3">Semantic Navigation</h4>
+            <pre className="!p-4 text-xs md:text-sm">{`> ALEPH:SEARCH "distance"
+  `}<strong>f_a3c9</strong>{` calculateDistanceBetweenTwoPoints  score=0.95
+  `}f_d7e8{` manhattanDistance                  score=0.72
+  `}f_f9a0{` distanceMatrix                    score=0.68
+
+> ALEPH:CALLERS `}<strong>f_a3c9</strong>{`
+  Callers of `}<strong>f_a3c9</strong>{`: 47
+    `}f_c4d3{` renderViewport    (src/render.ts)
+    `}f_e5f6{` detectCollision   (src/physics.ts)
+    `}f_g7h8{` pathfindAStar     (src/nav.ts)
+
+> ALEPH:CONTEXT `}<strong>f_a3c9</strong>{`
+  Symbol: `}<strong>f_a3c9</strong>{` calculateDistanceBetweenTwoPoints
+  Callers (47): renderViewport, detectCollision, ...
+  Callees (1):  Math.sqrt`}</pre>
+            <p className="text-sm mt-3" style={{ color: "var(--fg-muted)" }}>
+              Your AI navigates by meaning, not by grepping files. One call finds any symbol, its callers, and its neighborhood.
+            </p>
+          </div>
+
+          {/* 3. Impact Analysis */}
+          <div
+            className="rounded-xl border p-6"
+            style={{ borderColor: "var(--border)", background: "var(--quote-bg)" }}
+          >
+            <h4 className="font-bold mb-3">Impact Analysis</h4>
+            <pre className="!p-4 text-xs md:text-sm">{`> ALEPH:IMPACT `}<strong>f_a3c9</strong>{`
+
+IMPACT ANALYSIS: `}<strong>f_a3c9</strong>{` (calculateDistanceBetweenTwoPoints)
+File: src/math.ts | Salience: 0.82 | Stability: stable
+
+[DIRECT CALLERS] 47 across 12 files
+  HIGH RISK (3 — high salience, no test coverage):
+    `}f_c4d3{` renderViewport      salience=0.71
+    `}f_e5f6{` detectCollision     salience=0.65
+  COVERED (8 — tests will catch regressions):
+    `}f_g7h8{` pathfindAStar       tests=3
+
+[RISK SUMMARY]
+  Untested high-salience: 3 (DANGER)
+  Suggested test targets: `}f_c4d3{`, `}f_e5f6</pre>
+            <p className="text-sm mt-3" style={{ color: "var(--fg-muted)" }}>
+              Before modifying any function, one call shows the blast radius. No more breaking things you can&apos;t see.
+            </p>
+          </div>
+
+          {/* 4. Memory */}
+          <div
+            className="rounded-xl border p-6"
+            style={{ borderColor: "var(--border)", background: "var(--quote-bg)" }}
+          >
+            <h4 className="font-bold mb-3">Epistemic Memory</h4>
+            <pre className="!p-4 text-xs md:text-sm">{`> ALEPH:BRIEF "optimize the distance calculation"
+
+TASK BRIEF: optimize the distance calculation
+
+[RELEVANT SYMBOLS] (5 of 23 matches)
+  `}<strong>f_a3c9</strong>{` calculateDistanceBetweenTwoPoints  salience=0.82
+  `}f_d7e8{` manhattanDistance                  salience=0.45
+
+[PRIOR KNOWLEDGE]
+  `}<strong>f_a3c9</strong>{`: "thread-safe, used in hot render loop" [0.85]
+  `}<strong>f_a3c9</strong>{`: "consider SIMD for batch distance calc" [0.72]
+
+[NEXT STEPS]
+  1. ALEPH:EXPAND `}<strong>f_a3c9</strong>{` — likely modification target
+  2. ALEPH:IMPACT `}<strong>f_a3c9</strong>{` — check blast radius first`}</pre>
+            <p className="text-sm mt-3" style={{ color: "var(--fg-muted)" }}>
+              Prior conclusions persist across sessions. Confidence decays when code changes. Your AI remembers what it learned last time.
+            </p>
+          </div>
+        </div>
+      </details>
     </section>
   );
 }
