@@ -284,21 +284,35 @@ function Features() {
 function Pricing() {
   const tiers = [
     {
-      name: "Free",
+      name: "Solo",
       price: "$0",
       period: "forever",
-      desc: "Solo developers & open source",
-      features: ["All 31 MCP tools", "All 6 languages", "Local builds & serve", "Auto-rebuild", "Session memory"],
-      cta: "Get Started",
+      desc: "Individual developers & open source",
+      features: [
+        "All 31 MCP tools",
+        "All 6 languages",
+        "Local builds & auto-rebuild",
+        "Impact analysis & task briefing",
+        "Session memory & epistemic layer",
+        "Unlimited personal use",
+      ],
+      cta: "Get Started Free",
       href: "#install",
       highlight: false,
     },
     {
-      name: "Pro",
+      name: "Team",
       price: "$19",
       period: "/user/month",
-      desc: "Teams & indie studios",
-      features: ["Everything in Free", "Multi-agent epistemic", "Cross-project workspace", "Token savings dashboard", "Priority support"],
+      desc: "Teams building commercial products",
+      features: [
+        "Everything in Solo",
+        "Multi-agent epistemic stores",
+        "Cross-project workspace",
+        "Offline signed license (no phone-home)",
+        "Token savings dashboard",
+        "Priority support",
+      ],
       cta: "Coming Soon",
       href: "#",
       highlight: true,
@@ -308,8 +322,15 @@ function Pricing() {
       name: "Enterprise",
       price: "Custom",
       period: "",
-      desc: "Companies & large monorepos",
-      features: ["Everything in Pro", "On-prem deployment", "SSO & audit logs", "Custom salience tuning", "Dedicated support"],
+      desc: "Organizations & large monorepos",
+      features: [
+        "Everything in Team",
+        "On-prem deployment",
+        "SSO & audit logs",
+        "Custom salience tuning",
+        "SLA & dedicated support",
+        "Volume licensing",
+      ],
       cta: "Contact Us",
       href: "mailto:licensing@alephnull.ai",
       highlight: false,
@@ -320,13 +341,13 @@ function Pricing() {
     <section id="pricing" style={{ background: "var(--bg-alt)" }} className="!max-w-none">
       <div className="max-w-5xl mx-auto">
         <h2 className="text-3xl md:text-5xl font-black text-center mb-4 tracking-tight">
-          Simple pricing
+          Free for solo devs. Licensed for teams.
         </h2>
         <p className="text-center mb-4 text-lg" style={{ color: "var(--fg-muted)" }}>
-          Free for solo devs. Licensed for teams.
+          100% open source. No feature gates. Teams and companies that profit from Aleph need a license.
         </p>
         <p className="text-center mb-12 text-sm" style={{ color: "var(--fg-muted)" }}>
-          Real ROI: one developer saves $800&ndash;1,200/month in tokens at 95% compression. Pro pays for itself in 2 days.
+          Real ROI: one developer saves $800&ndash;1,200/month in LLM tokens at 95% compression. The license pays for itself in under 2 days.
         </p>
         <div className="grid md:grid-cols-3 gap-6">
           {tiers.map((t) => (
