@@ -281,6 +281,147 @@ function Features() {
   );
 }
 
+const LANGUAGES = [
+  { id: "java", label: "Java / Kotlin", icon: "J" },
+  { id: "swift", label: "Swift", icon: "S" },
+  { id: "ruby", label: "Ruby", icon: "R" },
+  { id: "php", label: "PHP", icon: "P" },
+  { id: "csharp", label: "C#", icon: "#" },
+  { id: "zig", label: "Zig", icon: "Z" },
+];
+
+function LanguageVote() {
+  const [votes, setVotes] = useState<Record<string, number>>({});
+  const [voted, setVoted] = useState<string | null>(null);
+  const [email, setEmail] = useState("");
+  const [subscribed, setSubscribed] = useState(false);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("aleph-lang-votes");
+    if (saved) setVotes(JSON.parse(saved));
+    setVoted(localStorage.getItem("aleph-lang-voted"));
+    setSubscribed(localStorage.getItem("aleph-subscribed") === "true");
+  }, []);
+
+  const castVote = (id: string) => {
+    if (voted) return;
+    const updated = { ...votes, [id]: (votes[id] || 0) + 1 };
+    setVotes(updated);
+    setVoted(id);
+    localStorage.setItem("aleph-lang-votes", JSON.stringify(updated));
+    localStorage.setItem("aleph-lang-voted", id);
+  };
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    // For now: store locally. Replace with API route + email service later.
+    const subs = JSON.parse(localStorage.getItem("aleph-subscribers") || "[]");
+    subs.push({ email, votedFor: voted, ts: new Date().toISOString() });
+    localStorage.setItem("aleph-subscribers", JSON.stringify(subs));
+    setSubscribed(true);
+    localStorage.setItem("aleph-subscribed", "true");
+  };
+
+  const totalVotes = Object.values(votes).reduce((a, b) => a + b, 0);
+
+  return (
+    <section>
+      <h2 className="text-3xl md:text-5xl font-black text-center mb-4 tracking-tight">
+        What language should we add next?
+      </h2>
+      <p className="text-center mb-2 text-lg" style={{ color: "var(--fg-muted)" }}>
+        Aleph supports Python, Rust, C++, TypeScript/JavaScript, and Go.
+      </p>
+      <p className="text-center mb-10 text-sm" style={{ color: "var(--fg-muted)" }}>
+        Vote for the next language. Results are live.
+      </p>
+
+      <div className="max-w-2xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-3 mb-8">
+        {LANGUAGES.map((lang) => {
+          const count = votes[lang.id] || 0;
+          const pct = totalVotes > 0 ? Math.round((count / totalVotes) * 100) : 0;
+          const isSelected = voted === lang.id;
+
+          return (
+            <button
+              key={lang.id}
+              onClick={() => castVote(lang.id)}
+              disabled={!!voted}
+              className="relative overflow-hidden rounded-lg border p-4 text-left transition-transform hover:scale-[1.02] disabled:cursor-default"
+              style={{
+                borderColor: isSelected ? "var(--fg)" : "var(--border)",
+                background: "var(--bg)",
+              }}
+            >
+              {/* Progress fill */}
+              {voted && (
+                <div
+                  className="absolute inset-0 opacity-10 transition-all duration-500"
+                  style={{
+                    background: "var(--fg)",
+                    width: `${pct}%`,
+                  }}
+                />
+              )}
+              <div className="relative flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <span
+                    className="w-8 h-8 rounded flex items-center justify-center text-sm font-bold"
+                    style={{ background: "var(--code-bg)" }}
+                  >
+                    {lang.icon}
+                  </span>
+                  <span className="font-semibold text-sm">{lang.label}</span>
+                </div>
+                {voted && (
+                  <span className="font-mono text-sm font-bold">{pct}%</span>
+                )}
+              </div>
+            </button>
+          );
+        })}
+      </div>
+
+      {voted && (
+        <p className="text-center text-sm mb-6" style={{ color: "var(--fg-muted)" }}>
+          {totalVotes} vote{totalVotes !== 1 ? "s" : ""} cast
+        </p>
+      )}
+
+      {/* Email signup */}
+      {!subscribed ? (
+        <form onSubmit={handleSubscribe} className="max-w-md mx-auto flex gap-2">
+          <input
+            type="email"
+            placeholder="your@email.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            className="flex-1 px-4 py-3 rounded-lg border text-sm outline-none"
+            style={{
+              borderColor: "var(--border)",
+              background: "var(--bg)",
+              color: "var(--fg)",
+            }}
+          />
+          <button
+            type="submit"
+            className="px-6 py-3 rounded-lg text-sm font-semibold transition-transform hover:scale-105 whitespace-nowrap"
+            style={{ background: "var(--fg)", color: "var(--bg)" }}
+          >
+            Get Updates
+          </button>
+        </form>
+      ) : (
+        <p className="text-center text-sm font-semibold" style={{ color: "var(--fg)" }}>
+          You&apos;re on the list. We&apos;ll notify you when the next language ships.
+        </p>
+      )}
+    </section>
+  );
+}
+
 function Pricing() {
   const tiers = [
     {
@@ -452,6 +593,7 @@ export default function Home() {
         <Benchmarks />
         <HowItWorks />
         <Features />
+        <LanguageVote />
         <Pricing />
         <Install />
       </main>
