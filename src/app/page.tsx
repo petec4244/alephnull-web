@@ -46,6 +46,7 @@ function Nav() {
           <a href="#features" className="hover:opacity-100 opacity-70 transition">Features</a>
           <a href="#pricing" className="hover:opacity-100 opacity-70 transition">Pricing</a>
           <a href="#install" className="hover:opacity-100 opacity-70 transition">Install</a>
+          <a href="/about" className="hover:opacity-100 opacity-70 transition">About</a>
         </div>
       </div>
     </nav>
