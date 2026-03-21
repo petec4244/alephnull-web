@@ -497,8 +497,9 @@ function LanguageVote() {
   const [subscribed, setSubscribed] = useState(false);
 
   useEffect(() => {
-    const saved = localStorage.getItem("aleph-lang-votes");
-    if (saved) setVotes(JSON.parse(saved));
+    // Load votes from server
+    fetch("/api/vote").then(r => r.json()).then(setVotes).catch(() => {});
+    // Check local state for whether this user already voted/subscribed
     setVoted(localStorage.getItem("aleph-lang-voted"));
     setSubscribed(localStorage.getItem("aleph-subscribed") === "true");
   }, []);
@@ -508,17 +509,24 @@ function LanguageVote() {
     const updated = { ...votes, [id]: (votes[id] || 0) + 1 };
     setVotes(updated);
     setVoted(id);
-    localStorage.setItem("aleph-lang-votes", JSON.stringify(updated));
     localStorage.setItem("aleph-lang-voted", id);
+    // Persist to database
+    fetch("/api/vote", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ languageId: id }),
+    }).catch(() => {});
   };
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
-    // For now: store locally. Replace with API route + email service later.
-    const subs = JSON.parse(localStorage.getItem("aleph-subscribers") || "[]");
-    subs.push({ email, votedFor: voted, ts: new Date().toISOString() });
-    localStorage.setItem("aleph-subscribers", JSON.stringify(subs));
+    // Persist to database
+    fetch("/api/subscribe", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, votedFor: voted }),
+    }).catch(() => {});
     setSubscribed(true);
     localStorage.setItem("aleph-subscribed", "true");
   };
