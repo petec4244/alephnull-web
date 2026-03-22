@@ -44,6 +44,7 @@ function Nav() {
           <a href="#benchmarks" className="hover:opacity-100 opacity-70 transition">Benchmarks</a>
           <a href="#how-it-works" className="hover:opacity-100 opacity-70 transition">How It Works</a>
           <a href="#features" className="hover:opacity-100 opacity-70 transition">Features</a>
+          <a href="#null-memory" className="hover:opacity-100 opacity-70 transition">Null Memory</a>
           <a href="#pricing" className="hover:opacity-100 opacity-70 transition">Pricing</a>
           <a href="#install" className="hover:opacity-100 opacity-70 transition">Install</a>
           <a href="/about" className="hover:opacity-100 opacity-70 transition">About</a>
@@ -482,6 +483,143 @@ function Features() {
   );
 }
 
+const nullEndorsements = [
+  {
+    who: "Grok",
+    quote: "It turns a stateless LLM into a genuine long-term collaborator that remembers its opinions, its mistakes, and how I like to work.",
+    detail: "Post-fix review, ranked Null #1 over Recallium, Mem0, Letta, Supermemory",
+  },
+  {
+    who: "Grok",
+    quote: "The first agent memory system I\u2019ve seen that actually feels like it was built by an agent, for agents.",
+    detail: "Competitive analysis, March 2026",
+  },
+  {
+    who: "ChatGPT",
+    quote: "You\u2019ve built something I\u2019d actually want for real work: simple storage model, understandable behavior, and practical MCP ergonomics.",
+    detail: "Independent code review, March 2026",
+  },
+  {
+    who: "Gemini",
+    quote: "The concept of having your AI pair-programmer persist its identity, past decisions, anti-patterns, and project context locally across sessions \u2014 agnostic of the IDE or chat interface because it runs over MCP \u2014 is the exact direction agentic coding tools need to go.",
+    detail: "Full technical audit, March 2026",
+  },
+];
+
+function NullMemory() {
+  const steps = [
+    { num: "1", title: "Observe", desc: "Records what your AI learns every turn. Lightweight, automatic, always-on." },
+    { num: "2", title: "Recall", desc: "Smart search with word expansion. \u2018database\u2019 finds Postgres, Redis, Neon. Stop words filtered. Project-scoped." },
+    { num: "3", title: "Reflect", desc: "Session self-assessment. What went well, what was missed, what to do differently. Anti-patterns auto-detected." },
+    { num: "4", title: "Persist", desc: "Never-prune mistakes and reflections. Confidence decay on stale facts. Garbage collection with archival." },
+  ];
+
+  const features = [
+    { title: "19 MCP Tools", desc: "Observe, recall, learn, decide, mistake, reflect, debrief, exemplar, GC \u2014 all via Model Context Protocol." },
+    { title: "Named Identity", desc: "Your agent has a name, working style, preferences, and anti-patterns that evolve with every session." },
+    { title: "Conversation Exemplars", desc: "Real interaction examples stored as calibration data. New instances learn HOW to respond, not just what to know." },
+    { title: "Word Expansion", desc: "30-concept thesaurus. \u2018trading\u2019 matches arbitrage, polymarket, pnl. \u2018test\u2019 matches pytest, vitest, coverage." },
+    { title: "Negative Knowledge", desc: "Mistakes are sacred. Never pruned, always surfaced in briefings. Your agent remembers what NOT to do." },
+    { title: "Smart GC", desc: "Jaccard deduplication, confidence decay archival, project-scoped. Keeps what matters, archives what doesn\u2019t." },
+    { title: "Atomic & Safe", desc: "Atomic writes via tempfile. Path traversal prevention. Sanitized imports. 136 tests, 4 independent AI reviews." },
+    { title: "CLI + MCP", desc: "Full CLI parity: null learn, null recall, null mistake, null reflect. Works without MCP connected." },
+  ];
+
+  return (
+    <section id="null-memory" style={{ background: "var(--bg-alt)" }} className="!max-w-none">
+      <div className="max-w-6xl mx-auto">
+        <p className="text-center text-sm font-semibold tracking-widest uppercase mb-6" style={{ color: "var(--fg-muted)" }}>
+          The other half of Aleph Null
+        </p>
+        <h2 className="text-4xl md:text-6xl font-black text-center mb-6 tracking-tight">
+          Give your AI a brain that persists.
+        </h2>
+        <p className="text-xl md:text-2xl text-center max-w-3xl mx-auto mb-4 leading-relaxed" style={{ color: "var(--fg-muted)" }}>
+          Null Memory makes every session feel like talking to the same person.
+          Facts, decisions, mistakes, reflections &mdash; your agent remembers and grows.
+        </p>
+        <p className="text-center text-lg font-semibold mb-16" style={{ color: "var(--fg)" }}>
+          Aleph gives it eyes. Null gives it a brain.
+        </p>
+
+        {/* How it works */}
+        <div className="grid md:grid-cols-4 gap-6 mb-20">
+          {steps.map((s) => (
+            <div key={s.num} className="text-center">
+              <div
+                className="w-14 h-14 rounded-full flex items-center justify-center text-xl font-black mx-auto mb-4"
+                style={{ background: "var(--fg)", color: "var(--bg)" }}
+              >
+                {s.num}
+              </div>
+              <h3 className="text-xl font-bold mb-2">{s.title}</h3>
+              <p className="text-sm leading-relaxed" style={{ color: "var(--fg-muted)" }}>{s.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Features grid */}
+        <h3 className="text-2xl md:text-3xl font-black text-center mb-10 tracking-tight">
+          Everything your agent needs to remember
+        </h3>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+          {features.map((f) => (
+            <div
+              key={f.title}
+              className="p-6 rounded-xl border"
+              style={{ borderColor: "var(--border)", background: "var(--bg)" }}
+            >
+              <h4 className="text-lg font-bold mb-2">{f.title}</h4>
+              <p className="text-sm leading-relaxed" style={{ color: "var(--fg-muted)" }}>{f.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Endorsements */}
+        <h3 className="text-2xl md:text-3xl font-black text-center mb-4 tracking-tight">
+          What AIs say about Null Memory
+        </h3>
+        <p className="text-center mb-12 text-base" style={{ color: "var(--fg-muted)" }}>
+          Four independent AI systems reviewed the full codebase. All said they&apos;d use it.
+        </p>
+        <div className="grid md:grid-cols-2 gap-8 mb-20">
+          {nullEndorsements.map((e, i) => (
+            <div
+              key={i}
+              className="p-8 rounded-xl border"
+              style={{ background: "var(--bg)", borderColor: "var(--border)" }}
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-lg font-bold">{e.who}</span>
+              </div>
+              <blockquote className="text-lg leading-relaxed mb-4 italic" style={{ color: "var(--fg)" }}>
+                &ldquo;{e.quote}&rdquo;
+              </blockquote>
+              <p className="text-sm" style={{ color: "var(--fg-muted)" }}>
+                &mdash; {e.detail}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* Install */}
+        <div className="max-w-xl mx-auto text-center">
+          <h3 className="text-2xl font-black mb-6">Get started in 3 commands</h3>
+          <pre
+            className="text-left !p-6 rounded-xl text-sm md:text-base mb-4"
+            style={{ background: "var(--bg)", border: "1px solid var(--border)" }}
+          >{`pip install null-memory
+null setup .
+null serve`}</pre>
+          <p className="text-sm" style={{ color: "var(--fg-muted)" }}>
+            Works in Cursor, Claude Code, VS Code, Windsurf. One command to configure.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 const LANGUAGES = [
   { id: "java", label: "Java / Kotlin", icon: "J" },
   { id: "swift", label: "Swift", icon: "S" },
@@ -808,6 +946,7 @@ export default function Home() {
         <HowItWorks />
         <SpeedComparison />
         <Features />
+        <NullMemory />
         <LanguageVote />
         <Pricing />
         <Install />
