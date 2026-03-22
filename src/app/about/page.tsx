@@ -39,7 +39,8 @@ function Nav() {
           ALEPH NULL
         </a>
         <div className="hidden md:flex gap-8 text-sm" style={{ color: "var(--fg-muted)" }}>
-          <a href="/" className="hover:opacity-100 opacity-70 transition">Home</a>
+          <a href="/aleph" className="hover:opacity-100 opacity-70 transition">Aleph</a>
+          <a href="/null" className="hover:opacity-100 opacity-70 transition">Null Memory</a>
           <a href="/about" className="hover:opacity-100 opacity-100 transition font-semibold" style={{ color: "var(--fg)" }}>About</a>
         </div>
       </div>
@@ -135,7 +136,7 @@ export default function About() {
               </a>
               , an ambitious from-scratch web browser in Rust, and{" "}
               <strong style={{ color: "var(--fg)" }}>Aleph Null LLC</strong>, the company behind
-              the Aleph semantic compiler.
+              the Aleph semantic compiler and Null Memory.
             </p>
             <p className="text-lg leading-relaxed" style={{ color: "var(--fg-muted)" }}>
               <a href="https://x.com/BigPeter" target="_blank" className="underline" style={{ color: "var(--fg)" }}>
@@ -168,6 +169,9 @@ export default function About() {
                 <p>
                   <a href="https://github.com/petec4244/Aleph" target="_blank" className="underline">github.com/petec4244/Aleph</a>
                 </p>
+                <p>
+                  <a href="https://github.com/petec4244/null" target="_blank" className="underline">github.com/petec4244/null</a>
+                </p>
               </div>
             </div>
           </section>
@@ -184,7 +188,8 @@ export default function About() {
         </p>
         <p className="mb-4">Patent Pending</p>
         <div className="flex justify-center gap-6 mb-4">
-          <a href="https://github.com/petec4244/Aleph" target="_blank" className="hover:underline">GitHub</a>
+          <a href="https://github.com/petec4244/Aleph" target="_blank" className="hover:underline">GitHub (Aleph)</a>
+          <a href="https://github.com/petec4244/null" target="_blank" className="hover:underline">GitHub (Null)</a>
           <a href="mailto:licensing@alephnull.ai" className="hover:underline">Licensing</a>
           <a href="mailto:support@alephnull.ai" className="hover:underline">Support</a>
         </div>
