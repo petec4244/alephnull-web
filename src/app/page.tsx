@@ -303,8 +303,8 @@ function Footer() {
       </p>
       <p className="mb-4">Patent Pending</p>
       <div className="flex justify-center gap-6 mb-4">
-        <a href="https://github.com/petec4244/Aleph" target="_blank" className="hover:underline">GitHub (Aleph)</a>
-        <a href="https://github.com/petec4244/null" target="_blank" className="hover:underline">GitHub (Null)</a>
+        <a href="https://github.com/alephnullai/aleph" target="_blank" className="hover:underline">GitHub (Aleph)</a>
+        <a href="https://github.com/alephnullai/null" target="_blank" className="hover:underline">GitHub (Null)</a>
         <a href="mailto:licensing@alephnull.ai" className="hover:underline">Licensing</a>
         <a href="mailto:support@alephnull.ai" className="hover:underline">Support</a>
       </div>

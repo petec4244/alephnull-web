@@ -73,7 +73,7 @@ function Hero() {
           Get Started Free
         </a>
         <a
-          href="https://github.com/petec4244/null"
+          href="https://github.com/alephnullai/null"
           target="_blank"
           className="px-8 py-4 rounded-lg text-lg font-semibold border transition-transform hover:scale-105"
           style={{ borderColor: "var(--border)", color: "var(--fg)" }}
@@ -446,7 +446,7 @@ function Footer() {
       </p>
       <p className="mb-4">Patent Pending</p>
       <div className="flex justify-center gap-6 mb-4">
-        <a href="https://github.com/petec4244/null" target="_blank" className="hover:underline">GitHub</a>
+        <a href="https://github.com/alephnullai/null" target="_blank" className="hover:underline">GitHub</a>
         <a href="mailto:licensing@alephnull.ai" className="hover:underline">Licensing</a>
         <a href="mailto:support@alephnull.ai" className="hover:underline">Support</a>
       </div>
