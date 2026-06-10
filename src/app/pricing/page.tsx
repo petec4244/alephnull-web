@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useState } from "react";
 
 function ThemeToggle() {
@@ -52,41 +51,77 @@ function Nav() {
 
 type Tier = {
   name: string;
-  users: string;
-  single: string;
-  bundle: string;
+  price: string;
+  per: string;
+  desc: string;
+  features: string[];
+  cta: string;
   buyHref: string;
   highlight?: boolean;
+  badge?: string;
 };
 
 const tiers: Tier[] = [
   {
-    name: "Team",
-    users: "5–19 users",
-    single: "$999",
-    bundle: "$1,499",
-    // Replace with real Stripe payment link once it's created
-    buyHref: "mailto:licensing@alephnull.ai?subject=License%20-%20Team%20Tier",
+    name: "Free",
+    price: "$0",
+    per: "forever",
+    desc: "Solo use of both products.",
+    features: [
+      "Aleph: full single-project experience — build, serve, all single-project MCP tools",
+      "Null: full personal memory — identity, recall, reflections, CLI + MCP",
+      "No license file, no nagging, no feature decay",
+      "Open source: Aleph is MIT, Null is AGPL-3.0",
+    ],
+    cta: "Get Started Free",
+    buyHref: "/aleph#install",
   },
   {
-    name: "Growth",
-    users: "20–99 users",
-    single: "$3,999",
-    bundle: "$5,999",
-    buyHref: "mailto:licensing@alephnull.ai?subject=License%20-%20Growth%20Tier",
+    name: "Aleph Pro",
+    price: "$99",
+    per: "per seat, one-time",
+    desc: "The multi-repo workspace layer.",
+    features: [
+      "Everything in Free",
+      "Workspace build & status across many repos",
+      "Workspace search, brief, and status MCP tools",
+      "Perpetual license + 12 months of updates",
+    ],
+    cta: "Buy Aleph Pro",
+    buyHref: "mailto:licensing@alephnull.ai?subject=License%20-%20Aleph%20Pro",
+  },
+  {
+    name: "Null Team",
+    price: "$149",
+    per: "per seat, one-time",
+    desc: "Shared memory for teams.",
+    features: [
+      "Everything in Free",
+      "Team sync — shared memory across your team's agents",
+      "Perpetual license + 12 months of updates",
+    ],
+    cta: "Buy Null Team",
+    buyHref: "mailto:licensing@alephnull.ai?subject=License%20-%20Null%20Team",
+  },
+  {
+    name: "Bundle",
+    price: "$249",
+    per: "per seat, one-time",
+    desc: "Aleph Pro + Null Team in one license.",
+    features: [
+      "Everything in Aleph Pro",
+      "Everything in Null Team",
+      "One license file covers both products",
+      "Perpetual license + 12 months of updates",
+    ],
+    cta: "Buy the Bundle",
+    buyHref: "mailto:licensing@alephnull.ai?subject=License%20-%20Aleph%20%2B%20Null%20Bundle",
     highlight: true,
-  },
-  {
-    name: "Enterprise",
-    users: "100+ users",
-    single: "$11,999",
-    bundle: "$17,999",
-    buyHref: "mailto:licensing@alephnull.ai?subject=License%20-%20Enterprise%20Tier",
+    badge: "Complete",
   },
 ];
 
-function TierCard({ tier, product }: { tier: Tier; product: "single" | "bundle" }) {
-  const price = product === "single" ? tier.single : tier.bundle;
+function TierCard({ tier }: { tier: Tier }) {
   return (
     <div
       className="border rounded-lg p-6 flex flex-col"
@@ -97,22 +132,21 @@ function TierCard({ tier, product }: { tier: Tier; product: "single" | "bundle" 
     >
       <div className="flex items-baseline justify-between mb-2">
         <h3 className="text-xl font-bold" style={{ color: "var(--fg)" }}>{tier.name}</h3>
-        {tier.highlight && (
+        {tier.badge && (
           <span className="text-xs uppercase tracking-wider px-2 py-1 rounded" style={{ background: "var(--fg)", color: "var(--bg)" }}>
-            Common
+            {tier.badge}
           </span>
         )}
       </div>
-      <p className="text-sm mb-6" style={{ color: "var(--fg-muted)" }}>{tier.users}</p>
+      <p className="text-sm mb-6" style={{ color: "var(--fg-muted)" }}>{tier.desc}</p>
       <div className="mb-6">
-        <span className="text-4xl font-black" style={{ color: "var(--fg)" }}>{price}</span>
-        <span className="text-sm ml-1" style={{ color: "var(--fg-muted)" }}>/ year</span>
+        <span className="text-4xl font-black" style={{ color: "var(--fg)" }}>{tier.price}</span>
+        <span className="text-sm ml-2" style={{ color: "var(--fg-muted)" }}>{tier.per}</span>
       </div>
       <ul className="text-sm space-y-2 mb-6 flex-grow" style={{ color: "var(--fg-muted)" }}>
-        <li>✓ Perpetual license — version never expires</li>
-        <li>✓ 1 year of updates included</li>
-        <li>✓ Mid-year tier upgrade prorated</li>
-        {product === "bundle" && <li>✓ Aleph + Null together (1.5× single)</li>}
+        {tier.features.map((f) => (
+          <li key={f}>✓ {f}</li>
+        ))}
       </ul>
       <a
         href={tier.buyHref}
@@ -123,98 +157,38 @@ function TierCard({ tier, product }: { tier: Tier; product: "single" | "bundle" 
           border: `1px solid var(--fg)`,
         }}
       >
-        Buy {tier.name}
+        {tier.cta}
       </a>
     </div>
   );
 }
 
 export default function Pricing() {
-  const [product, setProduct] = useState<"single" | "bundle">("single");
-
   return (
     <>
       <ThemeToggle />
       <Nav />
       <main className="pt-28 pb-20 px-6">
-        <article className="max-w-5xl mx-auto">
+        <article className="max-w-6xl mx-auto">
 
           <h1 className="text-4xl md:text-6xl font-black tracking-tight mb-6 text-center">
             Pricing
           </h1>
           <p className="text-lg text-center mb-12 max-w-2xl mx-auto" style={{ color: "var(--fg-muted)" }}>
-            Free for individual developers, teams under 5 users, and non-commercial use.
-            A yearly license is required when an organization with 5+ users uses Aleph or Null
-            to build, ship, or operate revenue-generating products.
+            Pay once. Own it forever. No subscriptions — ever.
+            Solo use is free for both products. A per-seat license unlocks the
+            team layer: Aleph&apos;s multi-repo workspace and Null&apos;s team sync.
           </p>
 
-          {/* Single vs Bundle toggle */}
-          <div className="flex justify-center mb-12">
-            <div
-              className="inline-flex border rounded-lg p-1"
-              style={{ borderColor: "var(--border)" }}
-            >
-              <button
-                onClick={() => setProduct("single")}
-                className="px-6 py-2 rounded text-sm font-semibold transition"
-                style={{
-                  background: product === "single" ? "var(--fg)" : "transparent",
-                  color: product === "single" ? "var(--bg)" : "var(--fg-muted)",
-                }}
-              >
-                Single product
-              </button>
-              <button
-                onClick={() => setProduct("bundle")}
-                className="px-6 py-2 rounded text-sm font-semibold transition"
-                style={{
-                  background: product === "bundle" ? "var(--fg)" : "transparent",
-                  color: product === "bundle" ? "var(--bg)" : "var(--fg-muted)",
-                }}
-              >
-                Suite (Aleph + Null)
-              </button>
-            </div>
-          </div>
-
-          {product === "single" && (
-            <p className="text-center text-sm mb-6" style={{ color: "var(--fg-muted)" }}>
-              Prices apply to either <a href="/aleph" className="underline">Aleph</a> or <a href="/null" className="underline">Null</a> separately.
-            </p>
-          )}
-          {product === "bundle" && (
-            <p className="text-center text-sm mb-6" style={{ color: "var(--fg-muted)" }}>
-              Bundle = both Aleph + Null at <strong>1.5× the single-product price</strong>, not 2×.
-            </p>
-          )}
-
           {/* Tier cards */}
-          <div className="grid md:grid-cols-3 gap-6 mb-16">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
             {tiers.map((t) => (
-              <TierCard key={t.name} tier={t} product={product} />
+              <TierCard key={t.name} tier={t} />
             ))}
           </div>
 
-          {/* Free tier */}
-          <section
-            className="border rounded-lg p-8 mb-16"
-            style={{ borderColor: "var(--border)" }}
-          >
-            <h2 className="text-2xl font-bold mb-3" style={{ color: "var(--fg)" }}>
-              Free
-            </h2>
-            <p className="text-base mb-3" style={{ color: "var(--fg-muted)" }}>
-              <strong style={{ color: "var(--fg)" }}>Individual developers, teams under 5 users, and non-commercial use.</strong>{" "}
-              No license required.
-            </p>
-            <p className="text-sm" style={{ color: "var(--fg-muted)" }}>
-              Includes everything in the GitHub repos. Open source. Aleph is MIT.
-              Null is AGPL-3.0 (modifications to network-deployed copies must be shared under the same license).
-            </p>
-          </section>
-
           {/* What you get */}
-          <section className="mb-16">
+          <section className="mb-16 max-w-4xl mx-auto">
             <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--fg)" }}>
               What every license includes
             </h2>
@@ -222,84 +196,92 @@ export default function Pricing() {
               <div>
                 <h3 className="font-semibold mb-2" style={{ color: "var(--fg)" }}>Perpetual</h3>
                 <p className="text-sm" style={{ color: "var(--fg-muted)" }}>
-                  Pay once. The version you license never expires. No subscription, no monthly fee, no auto-renew.
+                  Pay once. The version you license keeps working forever. No subscription,
+                  no monthly fee, no auto-renew, no payment trap.
                 </p>
               </div>
               <div>
-                <h3 className="font-semibold mb-2" style={{ color: "var(--fg)" }}>One year of updates</h3>
+                <h3 className="font-semibold mb-2" style={{ color: "var(--fg)" }}>12 months of updates</h3>
                 <p className="text-sm" style={{ color: "var(--fg-muted)" }}>
                   Every release shipped within 12 months of purchase is yours.
-                  After that, your installed version keeps working — renew for the next year of updates.
+                  After that, your installed version keeps working — renewal is optional
+                  if you want another year of updates.
                 </p>
               </div>
               <div>
-                <h3 className="font-semibold mb-2" style={{ color: "var(--fg)" }}>Prorated upgrades</h3>
+                <h3 className="font-semibold mb-2" style={{ color: "var(--fg)" }}>Offline licenses</h3>
                 <p className="text-sm" style={{ color: "var(--fg-muted)" }}>
-                  Cross a tier boundary mid-year? You pay the delta prorated to the remaining months of your update window.
+                  Your license is a small Ed25519-signed JSON file. Validation is fully
+                  offline — no phone-home, works air-gapped.
                 </p>
               </div>
               <div>
-                <h3 className="font-semibold mb-2" style={{ color: "var(--fg)" }}>Bundle discount</h3>
+                <h3 className="font-semibold mb-2" style={{ color: "var(--fg)" }}>Open source underneath</h3>
                 <p className="text-sm" style={{ color: "var(--fg-muted)" }}>
-                  License both Aleph and Null together at 1.5× the single-product tier price.
-                  Cheaper than buying them separately.
+                  Aleph is MIT. Null is AGPL-3.0 (modifications to network-deployed copies
+                  must be shared under the same license). The code is open — the license
+                  funds the project and unlocks the team features.
                 </p>
               </div>
             </div>
           </section>
 
           {/* How licensing works */}
-          <section className="mb-16">
+          <section className="mb-16 max-w-4xl mx-auto">
             <h2 className="text-2xl font-bold mb-4" style={{ color: "var(--fg)" }}>
               How licensing works
             </h2>
             <p className="text-base mb-4" style={{ color: "var(--fg-muted)" }}>
-              Neither Aleph nor Null check license status at runtime. Both work identically whether
-              licensed or unlicensed. The license is a legal commitment between your organization
-              and Aleph Null LLC.
+              The free features have no license checks anywhere in their code paths —
+              no nagging, no telemetry, no feature decay. Solo and single-project use
+              is free by design, not by loophole.
             </p>
             <p className="text-base mb-4" style={{ color: "var(--fg-muted)" }}>
-              If an audit reveals unlicensed commercial use over the 5-user threshold, the organization
-              owes <strong style={{ color: "var(--fg)" }}>3× the license fee they should have paid</strong> for
-              the period of unlicensed use, plus reasonable legal costs.
+              The paid features (Aleph&apos;s workspace layer, Null&apos;s team sync) unlock with
+              a signed license file. You purchase, we sign a license for your organization,
+              and you drop the file in place. That file <em>is</em> your license — validation
+            never leaves your machine.
             </p>
             <p className="text-base" style={{ color: "var(--fg-muted)" }}>
-              Companies that come forward and license up before being audited pay only the standard rate,
-              no penalty. We&apos;d much rather you self-report than discover us via audit.
+              Purchasing is currently handled by email. Write to{" "}
+              <a href="mailto:licensing@alephnull.ai" className="underline" style={{ color: "var(--fg)" }}>licensing@alephnull.ai</a>{" "}
+              and we&apos;ll get you set up the same day.
             </p>
           </section>
 
           {/* FAQ */}
-          <section className="mb-16">
+          <section className="mb-16 max-w-4xl mx-auto">
             <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--fg)" }}>FAQ</h2>
 
             <div className="space-y-6">
               <div>
                 <h3 className="font-semibold mb-2" style={{ color: "var(--fg)" }}>
-                  Who counts as a &quot;user&quot;?
-                </h3>
-                <p className="text-sm" style={{ color: "var(--fg-muted)" }}>
-                  Anyone on your team who interacts with the tool directly (CLI, IDE, MCP host)
-                  plus anyone whose workflow consumes its output. CI pipelines count as 1 user per integration.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="font-semibold mb-2" style={{ color: "var(--fg)" }}>
                   Is this a subscription?
                 </h3>
                 <p className="text-sm" style={{ color: "var(--fg-muted)" }}>
-                  No. You pay once, the license is perpetual. The yearly fee covers one year of updates.
-                  Skip a year? Your installed version keeps working. No auto-renew, no payment trap.
+                  No. You pay once and the license is perpetual. It includes 12 months of
+                  updates from the purchase date. No auto-renew, no recurring charge.
                 </p>
               </div>
 
               <div>
                 <h3 className="font-semibold mb-2" style={{ color: "var(--fg)" }}>
-                  What if my team is exactly 5 users?
+                  What happens after the 12 months of updates?
                 </h3>
                 <p className="text-sm" style={{ color: "var(--fg-muted)" }}>
-                  5 is the bottom of the Team tier. 1–4 users = free, 5+ commercial = Team tier.
+                  Nothing breaks. Your installed version keeps working forever.
+                  If you want another year of updates, renewing is optional.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="font-semibold mb-2" style={{ color: "var(--fg)" }}>
+                  Who counts as a &quot;seat&quot;?
+                </h3>
+                <p className="text-sm" style={{ color: "var(--fg-muted)" }}>
+                  Each person on your team who uses the licensed team features —
+                  Aleph&apos;s workspace tools or Null&apos;s team sync. Solo single-project
+                  and personal use never needs a seat.
                 </p>
               </div>
 
@@ -308,9 +290,9 @@ export default function Pricing() {
                   Can I try before buying?
                 </h3>
                 <p className="text-sm" style={{ color: "var(--fg-muted)" }}>
-                  Yes — both products are open source and free to evaluate.
-                  Use them for as long as you need to be sure they fit your team.
-                  License once they&apos;re part of your commercial workflow.
+                  Yes — both products are open source, and the solo experience is free
+                  with no time limit. Use them for as long as you need to be sure they
+                  fit your team, then license the team features when you adopt them.
                 </p>
               </div>
 
@@ -319,8 +301,8 @@ export default function Pricing() {
                   Do I need a license for personal projects?
                 </h3>
                 <p className="text-sm" style={{ color: "var(--fg-muted)" }}>
-                  No. Personal projects, learning, open source contributions, and any work
-                  that isn&apos;t building revenue for an organization are free under the open-source license.
+                  No. Personal projects, learning, open source contributions, and
+                  single-project work are free. The license covers the team layer only.
                 </p>
               </div>
             </div>

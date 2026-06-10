@@ -68,7 +68,7 @@ function Hero() {
         The compiler your AI<br />has been waiting for.
       </h1>
       <p className="text-xl md:text-2xl max-w-2xl mb-10 leading-relaxed" style={{ color: "var(--fg-muted)" }}>
-        95%+ token reduction on real codebases. 32 semantic tools via MCP.
+        Up to 96% token reduction on real codebases. 33 semantic tools via MCP.
         Your LLM navigates code instead of drowning in it.
       </p>
       <div className="flex flex-col sm:flex-row gap-4 mb-12">
@@ -118,7 +118,7 @@ const endorsements = [
     who: "ChatGPT Codex 5.4",
     score: "9/10",
     quote: "I would absolutely choose to use Aleph over raw-source-first exploration on a serious codebase. It feels like a real productivity multiplier, not a gimmick. The biggest value is that Aleph gives an agent a better unit of thought than raw files: symbols, salience, callers, stability, coverage, prior inferences.",
-    detail: "Independent audit + self-assessment, March 2026. Rated: Small repo 5/10, Medium 8/10, Large 9/10",
+    detail: "AI-assisted audit + self-assessment, March 2026. Rated: Small repo 5/10, Medium 8/10, Large 9/10",
   },
 ];
 
@@ -129,7 +129,7 @@ function Endorsements() {
         What leading AIs say
       </h2>
       <p className="text-center mb-16 text-lg" style={{ color: "var(--fg-muted)" }}>
-        Four independent AI systems reviewed the full codebase. All endorsed it.
+        Four frontier AI systems gave AI-assisted reviews of the full codebase. All endorsed it.
       </p>
       <div className="grid md:grid-cols-2 gap-8">
         {endorsements.map((e) => (
@@ -214,9 +214,9 @@ function Benchmarks() {
 
 function HowItWorks() {
   const steps = [
-    { num: "1", title: "Build", desc: "aleph build .", detail: "Compiles your codebase into navigable semantic artifacts. First build scales with repo size (seconds for most projects, up to ~an hour for multi-million-line monorepos, with live progress). Every build after is incremental." },
+    { num: "1", title: "Build", desc: "aleph build .", detail: "Compiles your codebase into navigable semantic artifacts. First build scales with repo size — seconds for most projects, ~25 minutes for a 3,801-file browser engine (after vendor exclusion), with live progress. Every build after is incremental." },
     { num: "2", title: "Connect", desc: "aleph setup .", detail: "Generates MCP configs for Cursor, VS Code, Windsurf, Claude Code." },
-    { num: "3", title: "Work", desc: "Your AI is 10x smarter", detail: "32 tools for navigation, impact analysis, and persistent memory." },
+    { num: "3", title: "Work", desc: "Your AI navigates, not greps", detail: "33 tools for navigation, impact analysis, and persistent memory — measured at a 5.71× median token advantage at equal accuracy." },
   ];
 
   return (
@@ -366,7 +366,7 @@ function SpeedComparison() {
     <section style={{ background: "var(--bg-alt)" }} className="!max-w-none">
       <div className="max-w-3xl mx-auto">
         <h2 className="text-3xl md:text-5xl font-black text-center mb-4 tracking-tight">
-          5x faster. Not a benchmark.<br />A Tuesday afternoon.
+          One call instead of five.<br />A Tuesday afternoon.
         </h2>
         <p className="text-center mb-12 text-lg" style={{ color: "var(--fg-muted)" }}>
           Real example: understanding a function&apos;s callers and dispatch pattern while building Aleph.
@@ -432,7 +432,7 @@ Callees (3):
 
         <div className="text-center">
           <p className="text-xl md:text-2xl font-black mb-3">
-            5x faster. 25x less context burned.
+            5.71× median token advantage at equal accuracy (26-task benchmark).
           </p>
           <p className="text-base mb-2" style={{ color: "var(--fg-muted)" }}>
             Every round-trip is latency. Every token spent reading is a token your AI can&apos;t use for reasoning.
@@ -448,7 +448,7 @@ Callees (3):
 
 function Features() {
   const features = [
-    { title: "32 MCP Tools", desc: "Navigate, search, resolve, expand, impact analysis, task briefing \u2014 all via Model Context Protocol." },
+    { title: "33 MCP Tools", desc: "Navigate, search, resolve, expand, impact analysis, task briefing \u2014 all via Model Context Protocol." },
     { title: "Impact Analysis", desc: "One call shows blast radius, untested callers, risk assessment, and suggested test targets before you modify anything." },
     { title: "Task Briefing", desc: "Describe your task in natural language. Get a curated context package with relevant symbols, call graph, and next steps." },
     { title: "Epistemic Memory", desc: "Conclusions persist across sessions. Confidence decays on stale inferences. Multi-agent tracking via agent ID." },
@@ -482,51 +482,51 @@ function Features() {
 function Pricing() {
   const tiers = [
     {
-      name: "Solo",
+      name: "Free",
       price: "$0",
-      period: "forever",
-      desc: "Individual developers & open source",
+      period: " forever",
+      desc: "The full single-project experience",
       features: [
-        "All 32 MCP tools",
+        "All single-project MCP tools",
         "All 6 languages",
         "Local builds & auto-rebuild",
         "Impact analysis & task briefing",
         "Session memory",
-        "Unlimited personal use",
+        "No license file, no feature decay",
       ],
       cta: "Get Started Free",
       href: "#install",
       highlight: false,
     },
     {
-      name: "Pro",
-      price: "$19",
-      period: "/user/month",
-      desc: "Commercial use, small teams",
+      name: "Aleph Pro",
+      price: "$99",
+      period: " per seat, one-time",
+      desc: "The multi-repo workspace layer",
       features: [
-        "Everything in Solo",
-        "Commercial license",
-        "Offline signed license",
-        "Up to 5 users",
+        "Everything in Free",
+        "Workspace build & status across repos",
+        "Workspace search, brief & status tools",
+        "Perpetual license + 12 months of updates",
+        "Offline signed license — no phone-home",
       ],
-      cta: "Coming Soon",
-      href: "#",
+      cta: "Buy Aleph Pro",
+      href: "mailto:licensing@alephnull.ai?subject=License%20-%20Aleph%20Pro",
       highlight: true,
     },
     {
-      name: "Team",
-      price: "$39",
-      period: "/user/month",
-      desc: "Full organization access",
+      name: "Bundle",
+      price: "$249",
+      period: " per seat, one-time",
+      desc: "Aleph Pro + Null Team in one license",
       features: [
-        "Everything in Pro",
-        "Up to 25 users",
-        "Cross-project workspace",
-        "Multi-agent epistemic stores",
-        "Priority support",
+        "Everything in Aleph Pro",
+        "Null Team: shared team memory",
+        "One license file covers both products",
+        "Perpetual license + 12 months of updates",
       ],
-      cta: "Coming Soon",
-      href: "#",
+      cta: "Buy the Bundle",
+      href: "mailto:licensing@alephnull.ai?subject=License%20-%20Aleph%20%2B%20Null%20Bundle",
       highlight: false,
     },
   ];
@@ -535,13 +535,13 @@ function Pricing() {
     <section id="pricing" style={{ background: "var(--bg-alt)" }} className="!max-w-none">
       <div className="max-w-5xl mx-auto">
         <h2 className="text-3xl md:text-5xl font-black text-center mb-4 tracking-tight">
-          Free for solo devs. Licensed for teams.
+          Pay once. Own it forever.
         </h2>
         <p className="text-center mb-4 text-lg" style={{ color: "var(--fg-muted)" }}>
-          100% open source. No feature gates. Teams and companies that profit from Aleph need a license.
+          No subscriptions — ever. Solo single-project use is free. A perpetual per-seat license unlocks the workspace layer.
         </p>
         <p className="text-center mb-12 text-sm" style={{ color: "var(--fg-muted)" }}>
-          Real ROI: one developer saves $800&ndash;1,200/month in LLM tokens at 95% compression. The license pays for itself in under 2 days.
+          After 12 months your version keeps working forever — renewal is optional for continued updates.
         </p>
         <div className="grid md:grid-cols-3 gap-6">
           {tiers.map((t) => (
@@ -581,7 +581,7 @@ function Pricing() {
           ))}
         </div>
         <p className="text-center mt-8 text-sm" style={{ color: "var(--fg-muted)" }}>
-          Save with the Aleph Null Suite &mdash; both products at a discount.
+          Null Team is $149 per seat on its own &mdash; <a href="/pricing" className="underline">full details on the pricing page</a>.
         </p>
       </div>
     </section>
@@ -606,14 +606,14 @@ aleph build .
 # Connect your editor
 aleph setup .
 
-# Done. Your AI now has 32 semantic tools.`}</code>
+# Done. Your AI now has 33 semantic tools.`}</code>
         </pre>
         <p className="text-center mt-8 text-sm" style={{ color: "var(--fg-muted)" }}>
           Or run without installing: <code className="px-2 py-0.5 rounded" style={{ background: "var(--code-bg)" }}>uvx aleph-compiler build .</code>
         </p>
         <p className="text-center mt-4 text-sm" style={{ color: "var(--fg-muted)" }}>
           Setup takes 30 seconds. The first <code className="px-2 py-0.5 rounded" style={{ background: "var(--code-bg)" }}>aleph build</code> scales
-          with your repo — most projects index in seconds to a few minutes; very large monorepos (millions of lines) can take up to an hour, with
+          with your repo — most projects index in seconds to a few minutes; a 3,801-file browser engine measured ~25 minutes (after vendor exclusion), with
           phase-by-phase progress the whole way. After that, rebuilds are incremental: edit a file and artifacts update in seconds.
         </p>
       </div>

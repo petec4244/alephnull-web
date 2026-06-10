@@ -41,6 +41,7 @@ function Nav() {
         <div className="hidden md:flex gap-8 text-sm" style={{ color: "var(--fg-muted)" }}>
           <a href="/aleph" className="hover:opacity-100 opacity-70 transition">Aleph</a>
           <a href="/null" className="hover:opacity-100 opacity-100 transition font-semibold" style={{ color: "var(--fg)" }}>Null Memory</a>
+          <a href="/pricing" className="hover:opacity-100 opacity-70 transition">Pricing</a>
           <a href="/about" className="hover:opacity-100 opacity-70 transition">About</a>
         </div>
       </div>
@@ -213,13 +214,13 @@ function HowItWorks() {
 
 function Features() {
   const features = [
-    { title: "19 MCP Tools", desc: "Observe, recall, learn, decide, mistake, reflect, debrief, exemplar, GC \u2014 all via Model Context Protocol." },
+    { title: "15 MCP Tools", desc: "Remember, recall, briefing, checkpoint, verify, anchor, exemplar, close \u2014 the full memory lifecycle via Model Context Protocol." },
     { title: "Named Identity", desc: "Your agent has a name, working style, preferences, and anti-patterns that evolve with every session." },
     { title: "Conversation Exemplars", desc: "Real interaction examples stored as calibration data. New instances learn HOW to respond, not just what to know." },
     { title: "Word Expansion", desc: "30-concept thesaurus. \u2018trading\u2019 matches arbitrage, polymarket, pnl. \u2018test\u2019 matches pytest, vitest, coverage." },
     { title: "Negative Knowledge", desc: "Mistakes are sacred. Never pruned, always surfaced in briefings. Your agent remembers what NOT to do." },
     { title: "Smart GC", desc: "Jaccard deduplication, confidence decay archival, project-scoped. Keeps what matters, archives what doesn\u2019t." },
-    { title: "Atomic & Safe", desc: "Atomic writes via tempfile. Path traversal prevention. Sanitized imports. 136 tests, 4 independent AI reviews." },
+    { title: "Atomic & Safe", desc: "Atomic writes via tempfile. Path traversal prevention. Sanitized imports. 1,176 tests, 4 AI-assisted reviews." },
     { title: "CLI + MCP", desc: "Full CLI parity: null learn, null recall, null mistake, null reflect. Works without MCP connected." },
   ];
 
@@ -260,7 +261,7 @@ const nullEndorsements = [
   {
     who: "ChatGPT",
     quote: "You\u2019ve built something I\u2019d actually want for real work: simple storage model, understandable behavior, and practical MCP ergonomics.",
-    detail: "Independent code review, March 2026",
+    detail: "AI-assisted code review, March 2026",
   },
   {
     who: "Gemini",
@@ -276,7 +277,7 @@ function Endorsements() {
         What AIs say about Null Memory
       </h2>
       <p className="text-center mb-16 text-lg" style={{ color: "var(--fg-muted)" }}>
-        Four independent AI systems reviewed the full codebase. All said they&apos;d use it.
+        Four frontier AI systems gave AI-assisted reviews of the full codebase. All said they&apos;d use it.
       </p>
       <div className="grid md:grid-cols-2 gap-8">
         {nullEndorsements.map((e, i) => (
@@ -304,51 +305,51 @@ function Endorsements() {
 function Pricing() {
   const tiers = [
     {
-      name: "Solo",
+      name: "Free",
       price: "$0",
-      period: "forever",
-      desc: "Individual developers & open source",
+      period: " forever",
+      desc: "Full personal memory, solo use",
       features: [
-        "All 19 MCP tools",
+        "All 15 MCP tools",
         "Named identity & exemplars",
         "Word expansion recall",
         "Mistake & reflection tracking",
         "Smart GC",
         "CLI + MCP",
-        "Unlimited personal use",
+        "No license file, no feature decay",
       ],
       cta: "Get Started Free",
       href: "#install",
       highlight: false,
     },
     {
-      name: "Pro",
-      price: "$19",
-      period: "/user/month",
-      desc: "Commercial use, small teams",
+      name: "Null Team",
+      price: "$149",
+      period: " per seat, one-time",
+      desc: "Shared memory for teams",
       features: [
-        "Everything in Solo",
-        "Commercial license",
-        "Offline signed license",
-        "Up to 5 users",
+        "Everything in Free",
+        "Team sync — shared memory across your team's agents",
+        "Perpetual license + 12 months of updates",
+        "Offline signed license — no phone-home",
       ],
-      cta: "Coming Soon",
-      href: "#",
+      cta: "Buy Null Team",
+      href: "mailto:licensing@alephnull.ai?subject=License%20-%20Null%20Team",
       highlight: true,
     },
     {
-      name: "Team",
-      price: "$39",
-      period: "/user/month",
-      desc: "Full organization access",
+      name: "Bundle",
+      price: "$249",
+      period: " per seat, one-time",
+      desc: "Null Team + Aleph Pro in one license",
       features: [
-        "Everything in Pro",
-        "Up to 25 users",
-        "Shared org memory (coming v0.4)",
-        "Priority support",
+        "Everything in Null Team",
+        "Aleph Pro: multi-repo workspace layer",
+        "One license file covers both products",
+        "Perpetual license + 12 months of updates",
       ],
-      cta: "Coming Soon",
-      href: "#",
+      cta: "Buy the Bundle",
+      href: "mailto:licensing@alephnull.ai?subject=License%20-%20Aleph%20%2B%20Null%20Bundle",
       highlight: false,
     },
   ];
@@ -357,10 +358,10 @@ function Pricing() {
     <section id="pricing" style={{ background: "var(--bg-alt)" }} className="!max-w-none">
       <div className="max-w-5xl mx-auto">
         <h2 className="text-3xl md:text-5xl font-black text-center mb-4 tracking-tight">
-          Free for solo devs. Licensed for teams.
+          Pay once. Own it forever.
         </h2>
         <p className="text-center mb-12 text-lg" style={{ color: "var(--fg-muted)" }}>
-          100% open source. No feature gates. Teams and companies that profit from Null need a license.
+          No subscriptions — ever. Personal use is free. A perpetual per-seat license unlocks team sync.
         </p>
         <div className="grid md:grid-cols-3 gap-6">
           {tiers.map((t) => (
@@ -400,7 +401,8 @@ function Pricing() {
           ))}
         </div>
         <p className="text-center mt-8 text-sm" style={{ color: "var(--fg-muted)" }}>
-          Save with the Aleph Null Suite &mdash; both products at a discount.
+          After 12 months your version keeps working forever &mdash; renewal is optional for continued updates.{" "}
+          <a href="/pricing" className="underline">Full details on the pricing page</a>.
         </p>
       </div>
     </section>

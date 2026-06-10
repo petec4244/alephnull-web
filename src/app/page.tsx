@@ -42,6 +42,7 @@ function Nav() {
         <div className="hidden md:flex gap-8 text-sm" style={{ color: "var(--fg-muted)" }}>
           <a href="/aleph" className="hover:opacity-100 opacity-70 transition">Aleph</a>
           <a href="/null" className="hover:opacity-100 opacity-70 transition">Null Memory</a>
+          <a href="/pricing" className="hover:opacity-100 opacity-70 transition">Pricing</a>
           <a href="/about" className="hover:opacity-100 opacity-70 transition">About</a>
         </div>
       </div>
@@ -82,7 +83,7 @@ function Hero() {
             The compiler your AI has been waiting for.
           </p>
           <p className="text-sm leading-relaxed" style={{ color: "var(--fg-muted)" }}>
-            95%+ token reduction. 32 MCP tools. Your LLM navigates code instead of drowning in it.
+            Up to 96% token reduction on real codebases. 33 MCP tools. Your LLM navigates code instead of drowning in it.
           </p>
         </a>
         {/* Null Memory card */}
@@ -125,64 +126,77 @@ function QuoteBanner() {
 function Pricing() {
   const tiers = [
     {
-      name: "Solo",
+      name: "Free",
       price: "$0",
-      period: "forever",
-      desc: "Both products, individual use.",
+      period: " forever",
+      desc: "Solo use of both products.",
       features: [
-        "All Aleph MCP tools",
-        "All Null MCP tools",
-        "All languages",
-        "Unlimited personal use",
+        "Aleph: full single-project experience",
+        "Null: full personal memory",
+        "All languages, CLI + MCP",
+        "No license file, no feature decay",
       ],
       cta: "Get Started Free",
       href: "/aleph#install",
       highlight: false,
     },
     {
-      name: "Pro",
-      price: "$29",
-      period: "/user/month",
-      desc: "Both products, commercial use.",
+      name: "Aleph Pro",
+      price: "$99",
+      period: " per seat, one-time",
+      desc: "Multi-repo workspace layer.",
       features: [
-        "Everything in Solo",
-        "Commercial license",
-        "Up to 5 users",
-        "Offline signed licenses",
-        "Priority support",
+        "Everything in Free",
+        "Cross-repo workspace build & search",
+        "Perpetual license",
+        "12 months of updates",
       ],
-      cta: "Coming Soon",
-      href: "#",
-      highlight: true,
+      cta: "See Pricing",
+      href: "/pricing",
+      highlight: false,
     },
     {
-      name: "Team",
-      price: "$59",
-      period: "/user/month",
-      desc: "Both products, full organization.",
+      name: "Null Team",
+      price: "$149",
+      period: " per seat, one-time",
+      desc: "Shared memory for teams.",
       features: [
-        "Everything in Pro",
-        "Up to 25 users",
-        "Shared org memory (Null)",
-        "Cross-project workspace (Aleph)",
-        "Priority support",
+        "Everything in Free",
+        "Team sync — shared agent memory",
+        "Perpetual license",
+        "12 months of updates",
       ],
-      cta: "Coming Soon",
-      href: "#",
+      cta: "See Pricing",
+      href: "/pricing",
       highlight: false,
+    },
+    {
+      name: "Bundle",
+      price: "$249",
+      period: " per seat, one-time",
+      desc: "Aleph Pro + Null Team together.",
+      features: [
+        "Everything in Aleph Pro",
+        "Everything in Null Team",
+        "Perpetual license",
+        "12 months of updates",
+      ],
+      cta: "See Pricing",
+      href: "/pricing",
+      highlight: true,
     },
   ];
 
   return (
     <section id="pricing" style={{ background: "var(--bg-alt)" }} className="!max-w-none">
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl md:text-5xl font-black text-center mb-4 tracking-tight">
-          Free for solo devs. Licensed for teams.
+          Pay once. Own it forever.
         </h2>
         <p className="text-center mb-12 text-lg" style={{ color: "var(--fg-muted)" }}>
-          100% open source. No feature gates. Teams and companies that profit need a license.
+          No subscriptions — ever. Solo use is free. A per-seat perpetual license unlocks the team layer.
         </p>
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {tiers.map((t) => (
             <div
               key={t.name}
@@ -220,7 +234,8 @@ function Pricing() {
           ))}
         </div>
         <p className="text-center mt-8 text-sm" style={{ color: "var(--fg-muted)" }}>
-          Need just one product? Individual pricing available on each product page.
+          After 12 months your version keeps working forever — renewal is optional for continued updates.{" "}
+          <a href="/pricing" className="underline">Full details on the pricing page</a>.
         </p>
       </div>
     </section>
