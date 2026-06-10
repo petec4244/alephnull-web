@@ -42,6 +42,7 @@ function Nav() {
         <div className="hidden md:flex gap-8 text-sm" style={{ color: "var(--fg-muted)" }}>
           <a href="/aleph" className="hover:opacity-100 opacity-100 transition font-semibold" style={{ color: "var(--fg)" }}>Aleph</a>
           <a href="/null" className="hover:opacity-100 opacity-70 transition">Null Memory</a>
+          <a href="/pricing" className="hover:opacity-100 opacity-70 transition">Pricing</a>
           <a href="/about" className="hover:opacity-100 opacity-70 transition">About</a>
         </div>
       </div>
@@ -162,7 +163,7 @@ function Endorsements() {
 }
 
 const benchmarks = [
-  { name: "HiWave Browser", lang: "Rust", files: "7,667", symbols: "200,413", tokens: "38.9M \u2192 1.9M", reduction: "95.2%", url: "https://hiwave.xyz" },
+  { name: "HiWave Browser", lang: "Rust", files: "7,667", symbols: "200,413", tokens: "38.9M \u2192 1.9M", reduction: "95.2%", url: "https://www.hiwavebrowser.com" },
   { name: "OpenClaw", lang: "TypeScript", files: "7,149", symbols: "84,668", tokens: "13.3M \u2192 504k", reduction: "96.2%", url: "https://github.com/nicepkg/openclaw" },
   { name: "GoClaw", lang: "Go", files: "73", symbols: "768", tokens: "111k \u2192 6.9k", reduction: "93.8%", url: "https://github.com/sausheong/goclaw" },
   { name: "Aleph", lang: "Python", files: "145", symbols: "2,124", tokens: "176k \u2192 22k", reduction: "87.4%", url: "https://github.com/alephnullai/aleph" },
@@ -213,7 +214,7 @@ function Benchmarks() {
 
 function HowItWorks() {
   const steps = [
-    { num: "1", title: "Build", desc: "aleph build .", detail: "Compiles your codebase into navigable semantic artifacts." },
+    { num: "1", title: "Build", desc: "aleph build .", detail: "Compiles your codebase into navigable semantic artifacts. First build scales with repo size (seconds for most projects, up to ~an hour for multi-million-line monorepos, with live progress). Every build after is incremental." },
     { num: "2", title: "Connect", desc: "aleph setup .", detail: "Generates MCP configs for Cursor, VS Code, Windsurf, Claude Code." },
     { num: "3", title: "Work", desc: "Your AI is 10x smarter", detail: "32 tools for navigation, impact analysis, and persistent memory." },
   ];
@@ -609,6 +610,11 @@ aleph setup .
         </pre>
         <p className="text-center mt-8 text-sm" style={{ color: "var(--fg-muted)" }}>
           Or run without installing: <code className="px-2 py-0.5 rounded" style={{ background: "var(--code-bg)" }}>uvx aleph-compiler build .</code>
+        </p>
+        <p className="text-center mt-4 text-sm" style={{ color: "var(--fg-muted)" }}>
+          Setup takes 30 seconds. The first <code className="px-2 py-0.5 rounded" style={{ background: "var(--code-bg)" }}>aleph build</code> scales
+          with your repo — most projects index in seconds to a few minutes; very large monorepos (millions of lines) can take up to an hour, with
+          phase-by-phase progress the whole way. After that, rebuilds are incremental: edit a file and artifacts update in seconds.
         </p>
       </div>
     </section>
