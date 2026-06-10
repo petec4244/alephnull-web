@@ -39,7 +39,9 @@ function Nav() {
           ALEPH NULL
         </a>
         <div className="hidden md:flex gap-8 text-sm" style={{ color: "var(--fg-muted)" }}>
-          <a href="/" className="hover:opacity-100 opacity-70 transition">Home</a>
+          <a href="/aleph" className="hover:opacity-100 opacity-70 transition">Aleph</a>
+          <a href="/null" className="hover:opacity-100 opacity-70 transition">Null Memory</a>
+          <a href="/pricing" className="hover:opacity-100 opacity-70 transition">Pricing</a>
           <a href="/about" className="hover:opacity-100 opacity-100 transition font-semibold" style={{ color: "var(--fg)" }}>About</a>
         </div>
       </div>
@@ -96,11 +98,11 @@ export default function About() {
               Not as a coding assistant. As the <em>primary engineer</em>. Claude wrote the parser,
               the symbol extractor, the salience scorer, the MCP server, the impact analysis,
               the memory compression, the cross-project workspace — all of it.
-              850+ tests. 31 MCP tools. 6 languages. From architecture to production
-              in days, not months.
+              721 unit tests (plus 1,176 in Null Memory). 33 MCP tools. 6 languages.
+              From architecture to production in days, not months.
             </p>
             <p className="text-lg leading-relaxed" style={{ color: "var(--fg-muted)" }}>
-              Then I had four independent AI systems audit the result.{" "}
+              Then I had four frontier AI systems review the result in AI-assisted reviews.{" "}
               <strong style={{ color: "var(--fg)" }}>Grok gave it 9.5/10. Gemini scored 10/10 on most criteria.
               ChatGPT Codex rated it 9/10 on large repos.</strong>{" "}
               Claude — the one who built it — said it fundamentally changes how it works with code.
@@ -118,7 +120,8 @@ export default function About() {
             <p className="text-lg leading-relaxed" style={{ color: "var(--fg-muted)" }}>
               Aleph is the missing layer. It compiles your codebase into something AIs can
               actually navigate — symbols, relationships, salience, temporal stability, impact
-              analysis, persistent memory. <strong style={{ color: "var(--fg)" }}>95% fewer tokens. 5x fewer round-trips.
+              analysis, persistent memory. <strong style={{ color: "var(--fg)" }}>Up to 96% fewer tokens on real codebases,
+              and a 5.71× median token advantage at equal accuracy (26-task benchmark).
               The same understanding in a fraction of the context.</strong>
             </p>
           </section>
@@ -135,7 +138,7 @@ export default function About() {
               </a>
               , an ambitious from-scratch web browser in Rust, and{" "}
               <strong style={{ color: "var(--fg)" }}>Aleph Null LLC</strong>, the company behind
-              the Aleph semantic compiler.
+              the Aleph semantic compiler and Null Memory.
             </p>
             <p className="text-lg leading-relaxed" style={{ color: "var(--fg-muted)" }}>
               <a href="https://x.com/BigPeter" target="_blank" className="underline" style={{ color: "var(--fg)" }}>
@@ -166,7 +169,10 @@ export default function About() {
               <div>
                 <span className="text-sm font-semibold" style={{ color: "var(--fg-muted)" }}>Source code</span>
                 <p>
-                  <a href="https://github.com/petec4244/Aleph" target="_blank" className="underline">github.com/petec4244/Aleph</a>
+                  <a href="https://github.com/alephnullai/aleph" target="_blank" className="underline">github.com/alephnullai/aleph</a>
+                </p>
+                <p>
+                  <a href="https://github.com/alephnullai/null" target="_blank" className="underline">github.com/alephnullai/null</a>
                 </p>
               </div>
             </div>
@@ -184,7 +190,8 @@ export default function About() {
         </p>
         <p className="mb-4">Patent Pending</p>
         <div className="flex justify-center gap-6 mb-4">
-          <a href="https://github.com/petec4244/Aleph" target="_blank" className="hover:underline">GitHub</a>
+          <a href="https://github.com/alephnullai/aleph" target="_blank" className="hover:underline">GitHub (Aleph)</a>
+          <a href="https://github.com/alephnullai/null" target="_blank" className="hover:underline">GitHub (Null)</a>
           <a href="mailto:licensing@alephnull.ai" className="hover:underline">Licensing</a>
           <a href="mailto:support@alephnull.ai" className="hover:underline">Support</a>
         </div>

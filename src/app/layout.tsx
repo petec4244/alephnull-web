@@ -16,10 +16,10 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://alephnull.ai"),
   title: "Aleph Null — The Compiler Your AI Has Been Waiting For",
   description:
-    "Universal semantic compression for LLMs. 95%+ token reduction on real codebases. 31 MCP tools. Works with Cursor, Claude Code, VS Code, Windsurf.",
+    "Universal semantic compression for LLMs. Up to 96% token reduction on real codebases. 33 MCP tools. Works with Cursor, Claude Code, VS Code, Windsurf.",
   openGraph: {
     title: "Aleph Null — The Compiler Your AI Has Been Waiting For",
-    description: "95%+ token reduction. 31 MCP tools. 6 languages. The semantic compiler for AI agents.",
+    description: "Up to 96% token reduction. 33 MCP tools. 6 languages. The semantic compiler for AI agents.",
     images: ["/logo.jpg"],
     url: "https://alephnull.ai",
   },
