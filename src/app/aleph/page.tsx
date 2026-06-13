@@ -214,7 +214,7 @@ function Benchmarks() {
 
 function HowItWorks() {
   const steps = [
-    { num: "1", title: "Build", desc: "aleph build .", detail: "Compiles your codebase into navigable semantic artifacts. First build scales with repo size — seconds for most projects, ~24 minutes single-threaded for a 3,801-file browser engine (vendor directories excluded by default), and parallel builds cut this further. Every build after is incremental." },
+    { num: "1", title: "Build", desc: "aleph build .", detail: "Compiles your codebase into navigable semantic artifacts. First build scales with repo size — seconds for most projects, and a 3,801-file browser engine builds in 3m17s with parallel builds (ALEPH_JOBS=8, measured; ~24 minutes single-threaded). Every build after is incremental." },
     { num: "2", title: "Connect", desc: "aleph setup .", detail: "Generates MCP configs for Cursor, VS Code, Windsurf, Claude Code." },
     { num: "3", title: "Work", desc: "Your AI navigates, not greps", detail: "33 tools for navigation, impact analysis, and persistent memory — measured at a 5.71× median token advantage at equal accuracy." },
   ];
@@ -491,8 +491,8 @@ function Reliability() {
           </p>
           <p className="text-sm leading-relaxed" style={{ color: "var(--fg-muted)" }}>
             Vendor directories are excluded by default, so you index your code, not
-            your dependencies. A 3,801-file browser engine measured ~24 minutes for a
-            full single-threaded build — parallel builds cut this further.
+            your dependencies. A 3,801-file browser engine: full parallel build
+            measured at 3m17s (ALEPH_JOBS=8) — 7.2× the single-threaded 24 minutes.
           </p>
         </div>
       </div>
@@ -667,7 +667,7 @@ aleph setup .
         </p>
         <p className="text-center mt-4 text-sm" style={{ color: "var(--fg-muted)" }}>
           Setup takes 30 seconds. The first <code className="px-2 py-0.5 rounded" style={{ background: "var(--code-bg)" }}>aleph build</code> scales
-          with your repo — most projects index in seconds to a few minutes; a 3,801-file browser engine measured ~24 minutes single-threaded (vendor
+          with your repo — most projects index in seconds to a few minutes; a 3,801-file browser engine builds in 3m17s parallel, ~24 minutes single-threaded (vendor
           directories excluded by default), and parallel builds cut this further, with phase-by-phase progress the whole way. After that, rebuilds are
           incremental: edit a file and artifacts update in seconds.
         </p>
