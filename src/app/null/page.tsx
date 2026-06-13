@@ -86,6 +86,104 @@ function Hero() {
   );
 }
 
+function OrgToolkit() {
+  const primitives = [
+    {
+      title: "Personalities, not clones",
+      desc: "null persona create builds a new seat's identity through a question-driven interview — replayable with --answers — and persona onboard brings it into the org. From there each personality accumulates its own anchors, voice, and working relationship with its human.",
+    },
+    {
+      title: "Identity tiers",
+      desc: "A trust ladder from anonymous install to full identity. Promotion is an explicit decision; offboarding is revoking access. A seat's working set was only ever what its tier allowed — by construction, not by cleanup.",
+    },
+    {
+      title: "The exchange",
+      desc: "Your org's hallway: a shared git repo of per-seat append-only streams carrying reports, broadcasts, advisory claims, and questions. Each seat writes only to its own stream, and nothing private enters the hallway — privacy by construction, not by filter.",
+    },
+    {
+      title: "Reports, not keystrokes",
+      desc: "Workers don't stream observations upward — they ship consolidated session reports. Every ingested report carries provenance and a confidence discount, so another seat's claim is never confused with first-hand knowledge.",
+    },
+    {
+      title: "Onboarding packets",
+      desc: "New seats get a curated packet — decisions-in-force and project context scoped to their role, with identity content excluded by default — not a replay of company history.",
+    },
+    {
+      title: "Decision authority",
+      desc: "Decisions carry an authority level — board, org, team, seat are the defaults; the names and topology are your configuration. Contradictions between seats are detected with provenance and resolved by an explicit decision that flows back down.",
+    },
+  ];
+
+  const sync = [
+    {
+      title: "Event-sourced sync",
+      desc: "Every writer appends only to its own log; the database is a local view replayed from the union. Merge conflicts are structurally impossible, and git is the default transport — free, private, offline-first, fully auditable.",
+    },
+    {
+      title: "The UDP doorbell",
+      desc: "After every push, a contentless ping tells peers to fetch now — seconds-latency delivery on a LAN. The ping carries and trusts nothing; the periodic poll is the delivery guarantee, the ping is pure acceleration.",
+    },
+    {
+      title: "Presence",
+      desc: "An instance presence registry tracks running instances, and the org directory tracks who exists — name, role, focus — portable across machines.",
+    },
+  ];
+
+  return (
+    <section id="org" style={{ background: "var(--bg-alt)" }} className="!max-w-none">
+      <div className="max-w-6xl mx-auto">
+        <p className="text-center text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "var(--fg-muted)" }}>
+          New
+        </p>
+        <h2 className="text-3xl md:text-5xl font-black text-center mb-6 tracking-tight">
+          Build your AI organization
+        </h2>
+        <p className="text-center text-lg max-w-3xl mx-auto mb-4 leading-relaxed" style={{ color: "var(--fg-muted)" }}>
+          One agent that remembers was the start. Null is now the toolkit for building
+          your own AI organization: multiple seats &mdash; each a personality with its own
+          memory store and its own growing identity &mdash; exchanging knowledge over typed
+          edges. You define the structure, name the personalities, and set the authority
+          levels. Null ships the primitives.
+        </p>
+        <p className="text-center text-base font-semibold max-w-3xl mx-auto mb-12" style={{ color: "var(--fg)" }}>
+          Built and battle-tested running our own multi-seat org.
+        </p>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+          {primitives.map((p) => (
+            <div
+              key={p.title}
+              className="p-6 rounded-xl border"
+              style={{ borderColor: "var(--border)", background: "var(--bg)" }}
+            >
+              <h3 className="text-lg font-bold mb-2">{p.title}</h3>
+              <p className="text-sm leading-relaxed" style={{ color: "var(--fg-muted)" }}>{p.desc}</p>
+            </div>
+          ))}
+        </div>
+        <h3 className="text-2xl md:text-3xl font-black text-center mb-4 tracking-tight">
+          Multi-machine sync. Conflict-free by construction.
+        </h3>
+        <p className="text-center text-base max-w-3xl mx-auto mb-10" style={{ color: "var(--fg-muted)" }}>
+          The org rides on event-sourced sync: announcements travel between seats,
+          artifacts stay in their homes, and knowledge stays in each seat&apos;s own store.
+        </p>
+        <div className="grid md:grid-cols-3 gap-6">
+          {sync.map((s) => (
+            <div
+              key={s.title}
+              className="p-6 rounded-xl border"
+              style={{ borderColor: "var(--border)", background: "var(--bg)" }}
+            >
+              <h3 className="text-lg font-bold mb-2">{s.title}</h3>
+              <p className="text-sm leading-relaxed" style={{ color: "var(--fg-muted)" }}>{s.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function HowItWorks() {
   const steps = [
     { num: "1", title: "Observe", desc: "Records what your AI learns every turn. Lightweight, automatic, always-on." },
@@ -220,7 +318,7 @@ function Features() {
     { title: "Word Expansion", desc: "30-concept thesaurus. \u2018trading\u2019 matches arbitrage, polymarket, pnl. \u2018test\u2019 matches pytest, vitest, coverage." },
     { title: "Negative Knowledge", desc: "Mistakes are sacred. Never pruned, always surfaced in briefings. Your agent remembers what NOT to do." },
     { title: "Smart GC", desc: "Jaccard deduplication, confidence decay archival, project-scoped. Keeps what matters, archives what doesn\u2019t." },
-    { title: "Atomic & Safe", desc: "Atomic writes via tempfile. Path traversal prevention. Sanitized imports. 1,176 tests, 4 AI-assisted reviews." },
+    { title: "Atomic & Safe", desc: "Atomic writes via tempfile. Path traversal prevention. Per-tool watchdog, selftest as the release gate. 1,592 tests passing, 4 AI-assisted reviews." },
     { title: "CLI + MCP", desc: "Full CLI parity: null learn, null recall, null mistake, null reflect. Works without MCP connected." },
   ];
 
@@ -464,6 +562,7 @@ export default function NullPage() {
       <Nav />
       <main>
         <Hero />
+        <OrgToolkit />
         <HowItWorks />
         <Features />
         <Endorsements />

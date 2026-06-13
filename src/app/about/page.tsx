@@ -98,7 +98,7 @@ export default function About() {
               Not as a coding assistant. As the <em>primary engineer</em>. Claude wrote the parser,
               the symbol extractor, the salience scorer, the MCP server, the impact analysis,
               the memory compression, the cross-project workspace — all of it.
-              721 unit tests (plus 1,176 in Null Memory). 33 MCP tools. 6 languages.
+              790 unit tests (plus 1,592 in Null Memory). 33 MCP tools. 6 languages.
               From architecture to production in days, not months.
             </p>
             <p className="text-lg leading-relaxed" style={{ color: "var(--fg-muted)" }}>

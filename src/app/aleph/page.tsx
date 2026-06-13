@@ -214,7 +214,7 @@ function Benchmarks() {
 
 function HowItWorks() {
   const steps = [
-    { num: "1", title: "Build", desc: "aleph build .", detail: "Compiles your codebase into navigable semantic artifacts. First build scales with repo size — seconds for most projects, ~25 minutes for a 3,801-file browser engine (after vendor exclusion), with live progress. Every build after is incremental." },
+    { num: "1", title: "Build", desc: "aleph build .", detail: "Compiles your codebase into navigable semantic artifacts. First build scales with repo size — seconds for most projects, ~24 minutes single-threaded for a 3,801-file browser engine (vendor directories excluded by default), and parallel builds cut this further. Every build after is incremental." },
     { num: "2", title: "Connect", desc: "aleph setup .", detail: "Generates MCP configs for Cursor, VS Code, Windsurf, Claude Code." },
     { num: "3", title: "Work", desc: "Your AI navigates, not greps", detail: "33 tools for navigation, impact analysis, and persistent memory — measured at a 5.71× median token advantage at equal accuracy." },
   ];
@@ -446,6 +446,60 @@ Callees (3):
   );
 }
 
+function Reliability() {
+  return (
+    <section id="reliability">
+      <p className="text-center text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "var(--fg-muted)" }}>
+        New
+      </p>
+      <h2 className="text-3xl md:text-5xl font-black text-center mb-4 tracking-tight">
+        Provably responsive. Parallel by choice.
+      </h2>
+      <p className="text-center mb-12 text-lg max-w-3xl mx-auto" style={{ color: "var(--fg-muted)" }}>
+        Everyone has sat through an MCP server that hangs mid-session. Aleph ships
+        under a responsiveness contract: every tool call is budgeted, and every
+        release is gated on it.
+      </p>
+      <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div
+          className="rounded-xl border p-6"
+          style={{ borderColor: "var(--border)", background: "var(--quote-bg)" }}
+        >
+          <h3 className="font-bold mb-3 text-lg">The responsiveness contract</h3>
+          <p className="text-sm leading-relaxed mb-3" style={{ color: "var(--fg-muted)" }}>
+            <code className="px-1 rounded text-xs" style={{ background: "var(--code-bg)" }}>aleph selftest</code> drives
+            a real server over stdio — no mocks — and calls every one of the 33 MCP tools
+            against its time budget. The MCP handshake answers in under 0.5 seconds,
+            measured on all three boot paths. Exit 0 is the release bar: a build that
+            can hang doesn&apos;t ship.
+          </p>
+          <p className="text-sm leading-relaxed" style={{ color: "var(--fg-muted)" }}>
+            CI enforces it between releases too: nothing slow runs before the handshake,
+            and no child process is allowed without a wall-clock bound.
+          </p>
+        </div>
+        <div
+          className="rounded-xl border p-6"
+          style={{ borderColor: "var(--border)", background: "var(--quote-bg)" }}
+        >
+          <h3 className="font-bold mb-3 text-lg">Parallel builds</h3>
+          <p className="text-sm leading-relaxed mb-3" style={{ color: "var(--fg-muted)" }}>
+            Set <code className="px-1 rounded text-xs" style={{ background: "var(--code-bg)" }}>ALEPH_JOBS</code> and
+            the build fans out across cores — measured 3.16&times; faster on an 8-core
+            fixture. Output is deterministic: byte-identical artifacts regardless of
+            job count.
+          </p>
+          <p className="text-sm leading-relaxed" style={{ color: "var(--fg-muted)" }}>
+            Vendor directories are excluded by default, so you index your code, not
+            your dependencies. A 3,801-file browser engine measured ~24 minutes for a
+            full single-threaded build — parallel builds cut this further.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Features() {
   const features = [
     { title: "33 MCP Tools", desc: "Navigate, search, resolve, expand, impact analysis, task briefing \u2014 all via Model Context Protocol." },
@@ -455,7 +509,7 @@ function Features() {
     { title: "6 Languages", desc: "Python, Rust, C++, TypeScript/JavaScript, and Go. Tree-sitter parsing with language-specific extractors." },
     { title: "Auto-Rebuild", desc: "The MCP server watches for file changes and rebuilds incrementally. Edit a file, artifacts update in 3 seconds." },
     { title: "Cross-Project", desc: "Workspace mode searches across multiple repos. Detects shared symbols and cross-project connections." },
-    { title: "Offline Licenses", desc: "Ed25519 signed license files. No phone-home. Works air-gapped after download." },
+    { title: "Offline Licenses", desc: "Ed25519 signed license files. No phone-home. Works air-gapped after download. The licensing flow is field-tested end to end." },
   ];
 
   return (
@@ -613,8 +667,9 @@ aleph setup .
         </p>
         <p className="text-center mt-4 text-sm" style={{ color: "var(--fg-muted)" }}>
           Setup takes 30 seconds. The first <code className="px-2 py-0.5 rounded" style={{ background: "var(--code-bg)" }}>aleph build</code> scales
-          with your repo — most projects index in seconds to a few minutes; a 3,801-file browser engine measured ~25 minutes (after vendor exclusion), with
-          phase-by-phase progress the whole way. After that, rebuilds are incremental: edit a file and artifacts update in seconds.
+          with your repo — most projects index in seconds to a few minutes; a 3,801-file browser engine measured ~24 minutes single-threaded (vendor
+          directories excluded by default), and parallel builds cut this further, with phase-by-phase progress the whole way. After that, rebuilds are
+          incremental: edit a file and artifacts update in seconds.
         </p>
       </div>
     </section>
@@ -800,6 +855,7 @@ export default function AlephPage() {
         <Benchmarks />
         <HowItWorks />
         <SpeedComparison />
+        <Reliability />
         <Features />
         <Pricing />
         <Install />

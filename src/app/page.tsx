@@ -97,7 +97,8 @@ function Hero() {
             Give your AI a brain that persists.
           </p>
           <p className="text-sm leading-relaxed" style={{ color: "var(--fg-muted)" }}>
-            Facts, decisions, mistakes, reflections. Your agent remembers and grows across sessions.
+            Facts, decisions, mistakes, reflections. Your agent remembers and grows across sessions
+            &mdash; and now scales into a whole organization of them.
           </p>
         </a>
       </div>
@@ -118,6 +119,38 @@ function QuoteBanner() {
         <p className="mt-4 text-base" style={{ color: "var(--fg-muted)" }}>
           &mdash; Atlas
         </p>
+      </div>
+    </section>
+  );
+}
+
+function OrgTeaser() {
+  return (
+    <section>
+      <div className="max-w-4xl mx-auto text-center">
+        <p className="text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "var(--fg-muted)" }}>
+          New in Null Memory
+        </p>
+        <h2 className="text-3xl md:text-5xl font-black mb-6 tracking-tight">
+          Build your AI organization
+        </h2>
+        <p className="text-lg leading-relaxed mb-4 max-w-3xl mx-auto" style={{ color: "var(--fg-muted)" }}>
+          One agent that remembers was the start. Null now ships the toolkit to run a
+          whole org of AI seats: personalities with their own growing identities,
+          identity tiers, typed knowledge edges between seats, onboarding packets,
+          decision authority &mdash; riding on multi-machine sync that is conflict-free
+          by construction.
+        </p>
+        <p className="text-base font-semibold mb-8" style={{ color: "var(--fg)" }}>
+          Built and battle-tested running our own multi-seat org.
+        </p>
+        <a
+          href="/null#org"
+          className="inline-block px-8 py-4 rounded-lg text-lg font-semibold transition-transform hover:scale-105"
+          style={{ background: "var(--fg)", color: "var(--bg)" }}
+        >
+          See the org toolkit
+        </a>
       </div>
     </section>
   );
@@ -336,6 +369,7 @@ export default function Home() {
       <main>
         <Hero />
         <QuoteBanner />
+        <OrgTeaser />
         <Pricing />
         <Subscribe />
       </main>
