@@ -42,6 +42,7 @@ function Nav() {
           <a href="/aleph" className="hover:opacity-100 opacity-70 transition">Aleph</a>
           <a href="/null" className="hover:opacity-100 opacity-70 transition">Null Memory</a>
           <a href="/pricing" className="hover:opacity-100 opacity-100 transition font-semibold" style={{ color: "var(--fg)" }}>Pricing</a>
+          <a href="/license" className="hover:opacity-100 opacity-70 transition">License</a>
           <a href="/about" className="hover:opacity-100 opacity-70 transition">About</a>
         </div>
       </div>
@@ -71,7 +72,7 @@ const tiers: Tier[] = [
       "Aleph: full single-project experience — build, serve, all single-project MCP tools",
       "Null: full personal memory — identity, recall, reflections, CLI + MCP",
       "No license file, no nagging, no feature decay",
-      "Open source: Aleph is MIT, Null is AGPL-3.0",
+      "Source-available under PolyForm Small Business 1.0.0",
     ],
     cta: "Get Started Free",
     buyHref: "/aleph#install",
@@ -216,11 +217,13 @@ export default function Pricing() {
                 </p>
               </div>
               <div>
-                <h3 className="font-semibold mb-2" style={{ color: "var(--fg)" }}>Open source underneath</h3>
+                <h3 className="font-semibold mb-2" style={{ color: "var(--fg)" }}>Source-available underneath</h3>
                 <p className="text-sm" style={{ color: "var(--fg-muted)" }}>
-                  Aleph is MIT. Null is AGPL-3.0 (modifications to network-deployed copies
-                  must be shared under the same license). The code is open — the license
-                  funds the project and unlocks the team features.
+                  Both products are source-available under the PolyForm Small Business
+                  License 1.0.0 — free for individuals and small businesses, with a paid
+                  commercial license above the size/revenue threshold. You can read and build
+                  the source; this is not an OSI open-source license.{" "}
+                  <a href="/license" className="underline" style={{ color: "var(--fg)" }}>See the license page</a>.
                 </p>
               </div>
             </div>
@@ -287,12 +290,16 @@ export default function Pricing() {
 
               <div>
                 <h3 className="font-semibold mb-2" style={{ color: "var(--fg)" }}>
-                  Can I try before buying?
+                  Is the source available?
                 </h3>
                 <p className="text-sm" style={{ color: "var(--fg-muted)" }}>
-                  Yes — both products are open source, and the solo experience is free
-                  with no time limit. Use them for as long as you need to be sure they
-                  fit your team, then license the team features when you adopt them.
+                  Yes. Both products are source-available under the PolyForm Small
+                  Business License 1.0.0 — free for individuals and small businesses
+                  under the size/revenue threshold, paid above it. It is not an OSI
+                  open-source license. The solo experience is free with no time limit,
+                  so you can try it for as long as you need before licensing the team
+                  features.{" "}
+                  <a href="/license" className="underline" style={{ color: "var(--fg)" }}>Full terms on the license page</a>.
                 </p>
               </div>
 
@@ -301,8 +308,8 @@ export default function Pricing() {
                   Do I need a license for personal projects?
                 </h3>
                 <p className="text-sm" style={{ color: "var(--fg-muted)" }}>
-                  No. Personal projects, learning, open source contributions, and
-                  single-project work are free. The license covers the team layer only.
+                  No. Personal projects, learning, contributing, and single-project
+                  work are free. The license covers the team layer only.
                 </p>
               </div>
             </div>

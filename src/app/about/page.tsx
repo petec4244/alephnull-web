@@ -42,6 +42,7 @@ function Nav() {
           <a href="/aleph" className="hover:opacity-100 opacity-70 transition">Aleph</a>
           <a href="/null" className="hover:opacity-100 opacity-70 transition">Null Memory</a>
           <a href="/pricing" className="hover:opacity-100 opacity-70 transition">Pricing</a>
+          <a href="/license" className="hover:opacity-100 opacity-70 transition">License</a>
           <a href="/about" className="hover:opacity-100 opacity-100 transition font-semibold" style={{ color: "var(--fg)" }}>About</a>
         </div>
       </div>
