@@ -99,7 +99,7 @@ function OrgToolkit() {
     },
     {
       title: "The exchange",
-      desc: "Your org's hallway: a shared git repo of per-seat append-only streams carrying reports, broadcasts, advisory claims, and questions. Each seat writes only to its own stream, and nothing private enters the hallway — privacy by construction, not by filter.",
+      desc: "Your org's hallway: a shared git repo of append-only streams, one for each seat, carrying reports, broadcasts, advisory claims, and questions. Each seat writes only to its own stream, and nothing private enters the hallway — privacy by construction, not by filter.",
     },
     {
       title: "Reports, not keystrokes",
@@ -402,106 +402,47 @@ function Endorsements() {
 }
 
 function Pricing() {
-  const tiers = [
-    {
-      name: "Free",
-      price: "$0",
-      period: " forever",
-      desc: "Full personal memory, solo use",
-      features: [
-        "All 15 MCP tools",
-        "Named identity & exemplars",
-        "Word expansion recall",
-        "Mistake & reflection tracking",
-        "Smart GC",
-        "CLI + MCP",
-        "No license file, no feature decay",
-      ],
-      cta: "Get Started Free",
-      href: "#install",
-      highlight: false,
-    },
-    {
-      name: "Null Team",
-      price: "$149",
-      period: " per seat, one-time",
-      desc: "Shared memory for teams",
-      features: [
-        "Everything in Free",
-        "Team sync — shared memory across your team's agents",
-        "Perpetual license + 12 months of updates",
-        "Offline signed license — no phone-home",
-      ],
-      cta: "Buy Null Team",
-      href: "mailto:licensing@alephnull.ai?subject=License%20-%20Null%20Team",
-      highlight: true,
-    },
-    {
-      name: "Bundle",
-      price: "$249",
-      period: " per seat, one-time",
-      desc: "Null Team + Aleph Pro in one license",
-      features: [
-        "Everything in Null Team",
-        "Aleph Pro: multi-repo workspace layer",
-        "One license file covers both products",
-        "Perpetual license + 12 months of updates",
-      ],
-      cta: "Buy the Bundle",
-      href: "mailto:licensing@alephnull.ai?subject=License%20-%20Aleph%20%2B%20Null%20Bundle",
-      highlight: false,
-    },
-  ];
-
   return (
     <section id="pricing" style={{ background: "var(--bg-alt)" }} className="!max-w-none">
       <div className="max-w-5xl mx-auto">
         <h2 className="text-3xl md:text-5xl font-black text-center mb-4 tracking-tight">
-          Pay once. Own it forever.
+          Free &amp; Open Source
         </h2>
         <p className="text-center mb-12 text-lg" style={{ color: "var(--fg-muted)" }}>
-          No subscriptions — ever. Personal use is free. A perpetual per-seat license unlocks team sync.
+          Null Memory is free and open source under the Apache License 2.0 — every
+          feature, including team sync, for individuals and companies of any size.
+          No seat licenses, nothing to buy.
         </p>
-        <div className="grid md:grid-cols-3 gap-6">
-          {tiers.map((t) => (
-            <div
-              key={t.name}
-              className={`p-8 rounded-xl border flex flex-col ${t.highlight ? "ring-2" : ""}`}
-              style={{
-                borderColor: t.highlight ? "var(--fg)" : "var(--border)",
-                background: "var(--bg)",
-              }}
+        <div
+          className="max-w-3xl mx-auto p-8 rounded-xl border ring-2 text-center"
+          style={{ borderColor: "var(--fg)", background: "var(--bg)" }}
+        >
+          <ul className="inline-block text-left mb-8 space-y-2">
+            <li className="text-sm flex items-start gap-2"><span className="mt-0.5">+</span> All 15 MCP tools, CLI + MCP</li>
+            <li className="text-sm flex items-start gap-2"><span className="mt-0.5">+</span> Named identity, exemplars, mistake & reflection tracking</li>
+            <li className="text-sm flex items-start gap-2"><span className="mt-0.5">+</span> Team sync — shared memory across your team&apos;s agents</li>
+            <li className="text-sm flex items-start gap-2"><span className="mt-0.5">+</span> Apache-2.0 with an express patent grant — no license file, no phone-home</li>
+          </ul>
+          <div className="flex flex-col md:flex-row gap-4 justify-center">
+            <a
+              href="https://github.com/alephnullai/null"
+              target="_blank"
+              className="block text-center px-6 py-3 rounded-lg font-semibold transition-transform hover:scale-105"
+              style={{ background: "var(--fg)", color: "var(--bg)" }}
             >
-              <h3 className="text-xl font-bold mb-1">{t.name}</h3>
-              <div className="mb-1">
-                <span className="text-4xl font-black">{t.price}</span>
-                <span className="text-sm" style={{ color: "var(--fg-muted)" }}>{t.period}</span>
-              </div>
-              <p className="text-sm mb-6" style={{ color: "var(--fg-muted)" }}>{t.desc}</p>
-              <ul className="flex-1 mb-6 space-y-2">
-                {t.features.map((f) => (
-                  <li key={f} className="text-sm flex items-start gap-2">
-                    <span className="mt-0.5">+</span> {f}
-                  </li>
-                ))}
-              </ul>
-              <a
-                href={t.href}
-                className="block text-center py-3 rounded-lg font-semibold transition-transform hover:scale-105"
-                style={{
-                  background: t.highlight ? "var(--fg)" : "transparent",
-                  color: t.highlight ? "var(--bg)" : "var(--fg)",
-                  border: t.highlight ? "none" : "1px solid var(--border)",
-                }}
-              >
-                {t.cta}
-              </a>
-            </div>
-          ))}
+              Null on GitHub
+            </a>
+            <a
+              href="#install"
+              className="block text-center px-6 py-3 rounded-lg font-semibold transition-transform hover:scale-105"
+              style={{ color: "var(--fg)", border: "1px solid var(--border)" }}
+            >
+              Install in 30 seconds
+            </a>
+          </div>
         </div>
         <p className="text-center mt-8 text-sm" style={{ color: "var(--fg-muted)" }}>
-          After 12 months your version keeps working forever &mdash; renewal is optional for continued updates.{" "}
-          <a href="/pricing" className="underline">Full details on the pricing page</a>.
+          Aleph is free and open source too &mdash; <a href="/license" className="underline">full terms on the license page</a>.
         </p>
       </div>
     </section>
@@ -548,7 +489,7 @@ function Footer() {
       <p className="mb-4">Patent Pending</p>
       <div className="flex justify-center gap-6 mb-4">
         <a href="https://github.com/alephnullai/null" target="_blank" className="hover:underline">GitHub</a>
-        <a href="mailto:licensing@alephnull.ai" className="hover:underline">Licensing</a>
+        <a href="mailto:support@alephnull.ai" className="hover:underline">Contact</a>
         <a href="mailto:support@alephnull.ai" className="hover:underline">Support</a>
       </div>
       <p>&copy; 2026 Aleph Null LLC. All rights reserved.</p>

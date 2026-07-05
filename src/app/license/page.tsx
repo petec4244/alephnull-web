@@ -62,8 +62,8 @@ export default function License() {
             License
           </h1>
           <p className="text-lg text-center mb-12 max-w-2xl mx-auto" style={{ color: "var(--fg-muted)" }}>
-            Both products are source-available. Free for individuals and small
-            businesses; a paid commercial license covers everyone above that line.
+            Both products are free and open source under the Apache License 2.0.
+            For everyone. No tiers, no thresholds, nothing to buy.
           </p>
 
           {/* The license */}
@@ -72,70 +72,55 @@ export default function License() {
               The license
             </h2>
             <p className="text-base mb-4" style={{ color: "var(--fg-muted)" }}>
-              Aleph and Null Memory are both source-available under the{" "}
+              Aleph and Null Memory are both open source under the{" "}
               <a
-                href="https://polyformproject.org/licenses/small-business/1.0.0/"
+                href="https://www.apache.org/licenses/LICENSE-2.0"
                 target="_blank"
                 className="underline"
                 style={{ color: "var(--fg)" }}
               >
-                PolyForm Small Business License 1.0.0
+                Apache License 2.0
               </a>{" "}
-              (SPDX <code>PolyForm-Small-Business-1.0.0</code>). The source is
-              published and you can read it, build it, and run it &mdash; but this is
-              <em> not</em> an OSI open-source license. Use is permitted free of charge
-              within the size and revenue limits below; commercial use beyond them
-              requires a paid license.
+              (SPDX <code>Apache-2.0</code>). This is genuinely open source &mdash; an
+              OSI-approved license. You can read the source, build it, run it, modify
+              it, and redistribute it, for any purpose, free of charge.
             </p>
             <p className="text-base" style={{ color: "var(--fg-muted)" }}>
-              Required Notice: <span style={{ color: "var(--fg)" }}>Copyright 2026 Aleph Null LLC</span>.
+              Notice: <span style={{ color: "var(--fg)" }}>Copyright 2026 Aleph Null LLC</span>.
             </p>
           </section>
 
-          {/* Free use */}
+          {/* Free for everyone */}
           <section className="mb-16">
             <h2 className="text-2xl font-bold mb-4" style={{ color: "var(--fg)" }}>
-              Free for small businesses and individuals
+              Free for everyone
             </h2>
             <p className="text-base mb-4" style={{ color: "var(--fg-muted)" }}>
-              You may use both products free of charge if you are a company with fewer
-              than 100 total individuals (employees plus independent contractors) and
-              less than 1,000,000 USD (2019, inflation-adjusted via the US BLS CPI-U)
-              total revenue in the prior tax year.
+              Individuals, teams, and companies of any size may use both products
+              free of charge. There are no size or revenue thresholds, no seat
+              licenses, no feature gates, and nothing to buy. Self-hosting and
+              building from source are fully covered by the license &mdash; no
+              separate agreement is needed.
             </p>
             <p className="text-base" style={{ color: "var(--fg-muted)" }}>
-              Self-hosting and building from source for these permitted
-              individual and small-business purposes is already covered by the license &mdash;
-              no separate agreement is needed.
+              Apache-2.0 also includes an express patent grant from contributors to
+              users. The products are Patent Pending, and that grant composes with
+              it: every user receives a license to practice the covered claims as
+              embodied in the software.
             </p>
           </section>
 
-          {/* Commercial license */}
+          {/* Prior releases */}
           <section className="mb-16">
             <h2 className="text-2xl font-bold mb-4" style={{ color: "var(--fg)" }}>
-              Commercial use above the threshold
+              Prior releases
             </h2>
-            <p className="text-base mb-4" style={{ color: "var(--fg-muted)" }}>
-              Above that threshold, a paid commercial license is required. It is
-              per-seat and perpetual, includes 12 months of updates, and is a one-time
-              purchase &mdash; no subscriptions.
+            <p className="text-base" style={{ color: "var(--fg-muted)" }}>
+              Earlier releases of Null Memory published under{" "}
+              <code>AGPL-3.0-only</code> remain under the AGPL, and earlier releases
+              of Aleph published under <code>MIT</code> remain under MIT. The
+              Apache-2.0 relicensing applies to current and future releases.
             </p>
-            <div className="flex flex-col md:flex-row gap-4">
-              <a
-                href="mailto:licensing@alephnull.ai?subject=Commercial%20License"
-                className="px-6 py-3 border rounded font-semibold transition hover:opacity-90 text-center"
-                style={{ borderColor: "var(--fg)", color: "var(--fg)" }}
-              >
-                licensing@alephnull.ai
-              </a>
-              <a
-                href="/pricing"
-                className="px-6 py-3 border rounded font-semibold transition hover:opacity-90 text-center"
-                style={{ borderColor: "var(--border)", color: "var(--fg-muted)" }}
-              >
-                See pricing
-              </a>
-            </div>
           </section>
 
           {/* Footer note */}
@@ -144,18 +129,18 @@ export default function License() {
             style={{ borderColor: "var(--border)" }}
           >
             <p className="text-base" style={{ color: "var(--fg-muted)" }}>
-              This page describes the licensing model. The full license terms are the{" "}
+              The full license terms are the{" "}
               <a
-                href="https://polyformproject.org/licenses/small-business/1.0.0/"
+                href="https://www.apache.org/licenses/LICENSE-2.0"
                 target="_blank"
                 className="underline"
                 style={{ color: "var(--fg)" }}
               >
-                PolyForm Small Business License 1.0.0
+                Apache License 2.0
               </a>{" "}
               as published. Questions? Write to{" "}
-              <a href="mailto:licensing@alephnull.ai" className="underline" style={{ color: "var(--fg)" }}>
-                licensing@alephnull.ai
+              <a href="mailto:support@alephnull.ai" className="underline" style={{ color: "var(--fg)" }}>
+                support@alephnull.ai
               </a>.
             </p>
           </section>
@@ -172,7 +157,7 @@ export default function License() {
           <div className="flex gap-6">
             <a href="https://github.com/alephnullai/aleph" target="_blank" className="hover:underline">GitHub (Aleph)</a>
             <a href="https://github.com/alephnullai/null" target="_blank" className="hover:underline">GitHub (Null)</a>
-            <a href="mailto:licensing@alephnull.ai" className="hover:underline">Licensing</a>
+            <a href="mailto:support@alephnull.ai" className="hover:underline">Contact</a>
             <a href="mailto:support@alephnull.ai" className="hover:underline">Support</a>
           </div>
         </div>

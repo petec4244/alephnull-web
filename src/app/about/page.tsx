@@ -162,9 +162,10 @@ export default function About() {
                 </p>
               </div>
               <div>
-                <span className="text-sm font-semibold" style={{ color: "var(--fg-muted)" }}>Licensing &amp; sales</span>
+                <span className="text-sm font-semibold" style={{ color: "var(--fg-muted)" }}>License</span>
                 <p>
-                  <a href="mailto:licensing@alephnull.ai" className="underline">licensing@alephnull.ai</a>
+                  Free and open source under Apache-2.0 &mdash;{" "}
+                  <a href="/license" className="underline">see the license page</a>
                 </p>
               </div>
               <div>
@@ -193,7 +194,7 @@ export default function About() {
         <div className="flex justify-center gap-6 mb-4">
           <a href="https://github.com/alephnullai/aleph" target="_blank" className="hover:underline">GitHub (Aleph)</a>
           <a href="https://github.com/alephnullai/null" target="_blank" className="hover:underline">GitHub (Null)</a>
-          <a href="mailto:licensing@alephnull.ai" className="hover:underline">Licensing</a>
+          <a href="mailto:support@alephnull.ai" className="hover:underline">Contact</a>
           <a href="mailto:support@alephnull.ai" className="hover:underline">Support</a>
         </div>
         <p>&copy; 2026 Aleph Null LLC. All rights reserved.</p>
