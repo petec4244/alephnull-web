@@ -125,6 +125,10 @@ function OrgToolkit() {
       desc: "After every push, a contentless ping tells peers to fetch now — seconds-latency delivery on a LAN. The ping carries and trusts nothing; the periodic poll is the delivery guarantee, the ping is pure acceleration.",
     },
     {
+      title: "/doorbell, with self-pacing checks",
+      desc: "A bundled skill makes cross-seat comms one-liners: /doorbell <message> posts to your stream and rings your peers; /doorbell check surfaces only what's new, exactly once. Run it under a dynamic loop and it paces itself — 15-minute checks while peers are active, backing off to hourly as the exchange cools. No stored state, no wasted wakes.",
+    },
+    {
       title: "Presence",
       desc: "An instance presence registry tracks running instances, and the org directory tracks who exists — name, role, focus — portable across machines.",
     },
