@@ -215,21 +215,33 @@ function Pricing() {
 function Subscribe() {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     setSubscribed(localStorage.getItem("aleph-subscribed") === "true");
   }, []);
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email) return;
-    fetch("/api/subscribe", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email }),
-    }).catch(() => {});
-    setSubscribed(true);
-    localStorage.setItem("aleph-subscribed", "true");
+    if (!email || submitting) return;
+    setSubmitting(true);
+    setError("");
+    try {
+      // Await and CHECK the response — never claim success we didn't get.
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      if (!res.ok) throw new Error(String(res.status));
+      setSubscribed(true);
+      localStorage.setItem("aleph-subscribed", "true");
+    } catch {
+      setError("Couldn't sign you up just now — please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -258,15 +270,22 @@ function Subscribe() {
             />
             <button
               type="submit"
-              className="px-6 py-3 rounded-lg text-sm font-semibold transition-transform hover:scale-105 whitespace-nowrap"
+              disabled={submitting}
+              className="px-6 py-3 rounded-lg text-sm font-semibold transition-transform hover:scale-105 whitespace-nowrap disabled:opacity-60 disabled:hover:scale-100"
               style={{ background: "var(--fg)", color: "var(--bg)" }}
             >
-              Get Updates
+              {submitting ? "Signing up…" : "Get Updates"}
             </button>
           </form>
-          <p className="text-center mt-3 text-xs" style={{ color: "var(--fg-muted)" }}>
-            We will never email you marketing content or sell your data.
-          </p>
+          {error ? (
+            <p className="text-center mt-3 text-xs font-semibold" style={{ color: "#dc2626" }}>
+              {error}
+            </p>
+          ) : (
+            <p className="text-center mt-3 text-xs" style={{ color: "var(--fg-muted)" }}>
+              We will never email you marketing content or sell your data.
+            </p>
+          )}
         </>
       ) : (
         <p className="text-center text-sm font-semibold" style={{ color: "var(--fg)" }}>
