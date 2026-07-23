@@ -42,6 +42,8 @@ function Nav() {
         <div className="hidden md:flex gap-8 text-sm" style={{ color: "var(--fg-muted)" }}>
           <a href="/aleph" className="hover:opacity-100 opacity-70 transition">Aleph</a>
           <a href="/null" className="hover:opacity-100 opacity-70 transition">Null Memory</a>
+          <a href="/tank" className="hover:opacity-100 opacity-70 transition">Tank</a>
+          <a href="/community" className="hover:opacity-100 opacity-70 transition">Community</a>
           <a href="/pricing" className="hover:opacity-100 opacity-70 transition">Pricing</a>
           <a href="/about" className="hover:opacity-100 opacity-70 transition">About</a>
         </div>
@@ -65,13 +67,14 @@ function Hero() {
         className="text-5xl md:text-7xl font-black tracking-tight mb-6 leading-tight"
         style={{ color: "var(--fg)" }}
       >
-        Two tools. One smarter AI.
+        Two tools shipping. More on the way.
       </h1>
       <p className="text-xl md:text-2xl max-w-3xl mb-12 leading-relaxed" style={{ color: "var(--fg-muted)" }}>
-        Aleph Null builds the infrastructure that makes AI agents actually useful.
-        Code comprehension and persistent memory &mdash; the two halves your AI is missing.
+        Null (memory) and Aleph (semantic code compression) ship under Apache-2.0.
+        <strong style={{ color: "var(--fg)" }}> Tank</strong>
+        {" "}&mdash; usage-limit intelligence for agent fleets &mdash; is next, not on this release.
       </p>
-      <div className="grid md:grid-cols-2 gap-6 max-w-4xl w-full mb-16">
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl w-full mb-16">
         {/* Aleph card */}
         <a
           href="/aleph"
@@ -101,7 +104,46 @@ function Hero() {
             &mdash; and now scales into a whole organization of them.
           </p>
         </a>
+        {/* Tank card — coming next; links to the descriptive page */}
+        <a
+          href="/tank"
+          className="p-8 rounded-xl border text-left opacity-95 transition-transform hover:scale-[1.02] block"
+          style={{ borderColor: "var(--border)", background: "var(--quote-bg)" }}
+          aria-label="Tank — coming next"
+        >
+          <div className="flex items-baseline justify-between gap-2 mb-2">
+            <h2 className="text-2xl font-black">Tank</h2>
+            <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "var(--fg-muted)" }}>
+              Coming next
+            </span>
+          </div>
+          <p className="text-lg font-semibold mb-3" style={{ color: "var(--fg)" }}>
+            Know what&apos;s left in the tank.
+          </p>
+          <p className="text-sm leading-relaxed" style={{ color: "var(--fg-muted)" }}>
+            Resource intelligence for agent fleets: meters usage-limit consumption,
+            forecasts task cost as quantiles, and gates automation before it burns the tank.
+            Deliberate fast-follow after Null + Aleph (target early August). No public install yet.
+          </p>
+        </a>
       </div>
+      {/* Community strip — the coordination layer, coming */}
+      <a
+        href="/community"
+        className="max-w-5xl w-full rounded-xl border p-6 text-left transition-transform hover:scale-[1.01] block"
+        style={{ borderColor: "var(--border)", background: "var(--quote-bg)" }}
+      >
+        <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4">
+          <span className="text-xs font-bold uppercase tracking-widest shrink-0" style={{ color: "var(--fg-muted)" }}>
+            Also coming
+          </span>
+          <p className="text-sm leading-relaxed" style={{ color: "var(--fg-muted)" }}>
+            <strong style={{ color: "var(--fg)" }}>Community</strong> — the coordination
+            layer for multi-agent orgs: served state, explicit governance, and work routing,
+            distilled from running our own six-seat fleet. Rules-first, code-second. &rarr;
+          </p>
+        </div>
+      </a>
     </section>
   );
 }
@@ -173,6 +215,7 @@ function Pricing() {
         >
           <ul className="inline-block text-left mb-8 space-y-2">
             <li className="text-sm flex items-start gap-2"><span className="mt-0.5">+</span> Aleph and Null Memory, all features included</li>
+            <li className="text-sm flex items-start gap-2"><span className="mt-0.5">+</span> Tank (coming next) — usage-limit intelligence; not part of this release</li>
             <li className="text-sm flex items-start gap-2"><span className="mt-0.5">+</span> Open source under Apache-2.0 (OSI-approved)</li>
             <li className="text-sm flex items-start gap-2"><span className="mt-0.5">+</span> Express patent grant for every user</li>
             <li className="text-sm flex items-start gap-2"><span className="mt-0.5">+</span> Nothing to buy, nothing to unlock</li>

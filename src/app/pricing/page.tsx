@@ -41,6 +41,8 @@ function Nav() {
         <div className="hidden md:flex gap-8 text-sm" style={{ color: "var(--fg-muted)" }}>
           <a href="/aleph" className="hover:opacity-100 opacity-70 transition">Aleph</a>
           <a href="/null" className="hover:opacity-100 opacity-70 transition">Null Memory</a>
+          <a href="/tank" className="hover:opacity-100 opacity-70 transition">Tank</a>
+          <a href="/community" className="hover:opacity-100 opacity-70 transition">Community</a>
           <a href="/pricing" className="hover:opacity-100 opacity-100 transition font-semibold" style={{ color: "var(--fg)" }}>Pricing</a>
           <a href="/license" className="hover:opacity-100 opacity-70 transition">License</a>
           <a href="/about" className="hover:opacity-100 opacity-70 transition">About</a>
@@ -61,9 +63,15 @@ export default function Pricing() {
           <h1 className="text-4xl md:text-6xl font-black tracking-tight mb-6 text-center">
             It&apos;s free
           </h1>
-          <p className="text-lg text-center mb-12 max-w-2xl mx-auto" style={{ color: "var(--fg-muted)" }}>
+          <p className="text-lg text-center mb-4 max-w-2xl mx-auto" style={{ color: "var(--fg-muted)" }}>
             Both products are free and open source under the Apache License 2.0.
             Every feature, for everyone — individuals, teams, and companies of any size.
+          </p>
+          <p className="text-base text-center mb-12 max-w-2xl mx-auto" style={{ color: "var(--fg-muted)" }}>
+            Null and Aleph are live under Apache-2.0.
+            <strong style={{ color: "var(--fg)" }}> Tank</strong>
+            {" "}&mdash; the suite&apos;s usage-limit intelligence layer &mdash; is a named fast-follow,
+            not installable on this release.
           </p>
 
           {/* The one statement */}
@@ -156,6 +164,30 @@ export default function Pricing() {
                 </h3>
                 <p className="text-sm" style={{ color: "var(--fg-muted)" }}>
                   No. There&apos;s nothing to pay and nothing to renew. Install it and use it.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="font-semibold mb-2" style={{ color: "var(--fg)" }}>
+                  What about Tank?
+                </h3>
+                <p className="text-sm" style={{ color: "var(--fg-muted)" }}>
+                  Tank is the third piece of the Aleph Null suite: a fuel gauge for agent usage
+                  limits (meter · forecast · gate). It is deliberately a fast-follow so Null and
+                  Aleph land clean. <a href="/tank" className="underline">Read about Tank</a> —
+                  no public package yet.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="font-semibold mb-2" style={{ color: "var(--fg)" }}>
+                  What is Community?
+                </h3>
+                <p className="text-sm" style={{ color: "var(--fg-muted)" }}>
+                  Community is the coordination layer for multi-agent orgs — served state,
+                  explicit governance, and work routing, distilled from running our own fleet.
+                  It is design-complete and enters build next; Apache-2.0 when it ships.{" "}
+                  <a href="/community" className="underline">Read about Community</a>.
                 </p>
               </div>
             </div>

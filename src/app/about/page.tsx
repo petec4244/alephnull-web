@@ -41,6 +41,8 @@ function Nav() {
         <div className="hidden md:flex gap-8 text-sm" style={{ color: "var(--fg-muted)" }}>
           <a href="/aleph" className="hover:opacity-100 opacity-70 transition">Aleph</a>
           <a href="/null" className="hover:opacity-100 opacity-70 transition">Null Memory</a>
+          <a href="/tank" className="hover:opacity-100 opacity-70 transition">Tank</a>
+          <a href="/community" className="hover:opacity-100 opacity-70 transition">Community</a>
           <a href="/pricing" className="hover:opacity-100 opacity-70 transition">Pricing</a>
           <a href="/license" className="hover:opacity-100 opacity-70 transition">License</a>
           <a href="/about" className="hover:opacity-100 opacity-100 transition font-semibold" style={{ color: "var(--fg)" }}>About</a>
