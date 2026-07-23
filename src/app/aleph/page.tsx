@@ -796,7 +796,6 @@ function Footer() {
       <p className="mb-2 font-semibold" style={{ color: "var(--fg)" }}>
         Aleph Null LLC
       </p>
-      <p className="mb-4">Patent Pending</p>
       <div className="flex justify-center gap-6 mb-4">
         <a href="https://github.com/alephnullai/aleph" target="_blank" className="hover:underline">GitHub</a>
         <a href="mailto:support@alephnull.ai" className="hover:underline">Contact</a>

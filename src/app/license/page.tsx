@@ -106,9 +106,8 @@ export default function License() {
             </p>
             <p className="text-base" style={{ color: "var(--fg-muted)" }}>
               Apache-2.0 also includes an express patent grant from contributors to
-              users. The products are Patent Pending, and that grant composes with
-              it: every user receives a license to practice the covered claims as
-              embodied in the software.
+              users: every user receives a license to any contributor patent claims
+              as embodied in the software, at no cost.
             </p>
           </section>
 
