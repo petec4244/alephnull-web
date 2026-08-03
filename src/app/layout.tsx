@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     "Universal semantic compression for LLMs. Up to 96% token reduction on real codebases. 33 MCP tools. Works with Cursor, Claude Code, VS Code, Windsurf.",
   openGraph: {
     title: "Aleph Null — The Compiler Your AI Has Been Waiting For",
-    description: "Up to 96% token reduction. 33 MCP tools. 6 languages. The semantic compiler for AI agents.",
+    description: "Up to 96% token reduction. 33 MCP tools. 7 languages. The semantic compiler for AI agents.",
     images: ["/logo.jpg"],
     url: "https://alephnull.ai",
   },
