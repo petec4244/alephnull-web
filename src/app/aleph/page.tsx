@@ -92,7 +92,7 @@ function Hero() {
         </a>
       </div>
       <p className="text-sm" style={{ color: "var(--fg-muted)" }}>
-        Python &middot; Rust &middot; C++ &middot; TypeScript/JavaScript &middot; Go
+        Python &middot; Rust &middot; C++ &middot; TypeScript/JavaScript &middot; Go &middot; Java
       </p>
     </section>
   );
@@ -509,10 +509,9 @@ function Features() {
     { title: "Impact Analysis", desc: "One call shows blast radius, untested callers, risk assessment, and suggested test targets before you modify anything." },
     { title: "Task Briefing", desc: "Describe your task in natural language. Get a curated context package with relevant symbols, call graph, and next steps." },
     { title: "Epistemic Memory", desc: "Conclusions persist across sessions. Confidence decays on stale inferences. Multi-agent tracking via agent ID." },
-    { title: "6 Languages", desc: "Python, Rust, C++, TypeScript/JavaScript, and Go. Tree-sitter parsing with language-specific extractors." },
+    { title: "7 Languages", desc: "Python, Rust, C++, TypeScript/JavaScript, Go, and Java. Tree-sitter parsing with language-specific extractors." },
     { title: "Auto-Rebuild", desc: "The MCP server watches for file changes and rebuilds incrementally. Edit a file, artifacts update in 3 seconds." },
     { title: "Cross-Project", desc: "Workspace mode searches across multiple repos. Detects shared symbols and cross-project connections." },
-    { title: "Offline Licenses", desc: "Ed25519 signed license files. No phone-home. Works air-gapped after download. The licensing flow is field-tested end to end." },
   ];
 
   return (
@@ -555,7 +554,7 @@ function Pricing() {
           style={{ borderColor: "var(--fg)", background: "var(--bg)" }}
         >
           <ul className="inline-block text-left mb-8 space-y-2">
-            <li className="text-sm flex items-start gap-2"><span className="mt-0.5">+</span> All 33 MCP tools, all 6 languages</li>
+            <li className="text-sm flex items-start gap-2"><span className="mt-0.5">+</span> All 33 MCP tools, all 7 languages</li>
             <li className="text-sm flex items-start gap-2"><span className="mt-0.5">+</span> Local builds, auto-rebuild, impact analysis & task briefing</li>
             <li className="text-sm flex items-start gap-2"><span className="mt-0.5">+</span> Workspace build, search, brief & status across repos</li>
             <li className="text-sm flex items-start gap-2"><span className="mt-0.5">+</span> No license file, no feature decay, no phone-home</li>
@@ -621,7 +620,7 @@ aleph setup .
 }
 
 const LANGUAGES = [
-  { id: "java", label: "Java / Kotlin", icon: "J" },
+  { id: "kotlin", label: "Kotlin", icon: "K" },
   { id: "swift", label: "Swift", icon: "S" },
   { id: "ruby", label: "Ruby", icon: "R" },
   { id: "php", label: "PHP", icon: "P" },
@@ -632,6 +631,8 @@ const LANGUAGES = [
 function LanguageVote() {
   const [votes, setVotes] = useState<Record<string, number>>({});
   const [voted, setVoted] = useState<string | null>(null);
+  const [voting, setVoting] = useState<string | null>(null);
+  const [voteError, setVoteError] = useState("");
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -643,17 +644,30 @@ function LanguageVote() {
     setSubscribed(localStorage.getItem("aleph-subscribed") === "true");
   }, []);
 
-  const castVote = (id: string) => {
-    if (voted) return;
-    const updated = { ...votes, [id]: (votes[id] || 0) + 1 };
-    setVotes(updated);
-    setVoted(id);
-    localStorage.setItem("aleph-lang-voted", id);
-    fetch("/api/vote", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ languageId: id }),
-    }).catch(() => {});
+  const castVote = async (id: string) => {
+    if (voted || voting) return;
+    setVoting(id);
+    setVoteError("");
+    try {
+      // Await and CHECK the response, exactly as the signup form does. The
+      // optimistic version recorded the vote in localStorage before the POST
+      // resolved and swallowed failures, so a vote that never reached the
+      // database still showed as cast — and the localStorage flag then locked
+      // the visitor out of retrying it.
+      const res = await fetch("/api/vote", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ languageId: id }),
+      });
+      if (!res.ok) throw new Error(String(res.status));
+      setVotes({ ...votes, [id]: (votes[id] || 0) + 1 });
+      setVoted(id);
+      localStorage.setItem("aleph-lang-voted", id);
+    } catch {
+      setVoteError("Couldn't record that vote — please try again.");
+    } finally {
+      setVoting(null);
+    }
   };
 
   const handleSubscribe = async (e: React.FormEvent) => {
@@ -686,7 +700,7 @@ function LanguageVote() {
         What language should we add next?
       </h2>
       <p className="text-center mb-2 text-lg" style={{ color: "var(--fg-muted)" }}>
-        Aleph supports Python, Rust, C++, TypeScript/JavaScript, and Go.
+        Aleph supports Python, Rust, C++, TypeScript/JavaScript, Go, and Java.
       </p>
       <p className="text-center mb-10 text-sm" style={{ color: "var(--fg-muted)" }}>
         Vote for the next language. Results are live.
@@ -702,7 +716,7 @@ function LanguageVote() {
             <button
               key={lang.id}
               onClick={() => castVote(lang.id)}
-              disabled={!!voted}
+              disabled={!!voted || !!voting}
               className="relative overflow-hidden rounded-lg border p-4 text-left transition-transform hover:scale-[1.02] disabled:cursor-default"
               style={{
                 borderColor: isSelected ? "var(--fg)" : "var(--border)",
@@ -736,6 +750,12 @@ function LanguageVote() {
           );
         })}
       </div>
+
+      {voteError && (
+        <p className="text-center text-sm mb-6" style={{ color: "var(--fg-muted)" }}>
+          {voteError}
+        </p>
+      )}
 
       {voted && (
         <p className="text-center text-sm mb-6" style={{ color: "var(--fg-muted)" }}>
